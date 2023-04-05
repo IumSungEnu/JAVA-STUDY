@@ -1,0 +1,117 @@
+
+포매팅(fmt) 라이브러리
+  - 형식화 & 국제화, 지역화
+
+1. fmt:formatDate
+  - Date, SimpleDateFormat
+  - 지금은?
+     java.time.*
+    java.time.format
+      DateTimeFormatter
+
+  - type
+    - date : 날짜만 표기(기본값)
+    - time : 시간만 표기
+    - both : 날짜 + 시간
+
+  - dateStyle
+  - timeStyle
+
+    short | medium | long | full
+
+  - pattern : 날짜 형식
+
+
+
+2. fmt:formatNumber
+  - 숫자 형식화
+  - 자바 텍스트 패키지 (java.text)
+    DecialFormat
+
+  - value
+  - groupingUsed : true -> 숫자 세자리 마다 ,(콤마) 가 찍힌다.(o)
+	          : false -> 숫자 세자리 마다 ,(콤마) 가 없어진다.(x)
+
+  - pattern
+      # - 자리수가 비면 매꾸지 않는다.
+      0 - 자리수를 정확히 채운다
+
+  - type
+      : currency - 통화
+      : percent - %
+
+
+
+3. fmt:setLocale
+  Locale -> 지역화
+  java.util.Locale -> 국가, 언어
+
+  - value
+    언어코드_국가코드(ko_kr)
+    언어코드(ko)
+
+
+
+
+4. fmt:timeZone과 fmt:setTimeZone
+차이는 거의 없고 사용하는 방법에 차이가 있다.
+
+fmt:timeZone -> 적용되는 날짜를 감싸는 형태
+fmt:setTimeZone -> 
+
+
+
+5. fmt:setBundle과 fmt:bundle
+<fmt:message />
+
+fmt:bundle -> fmt:timeZone과 마찬가지로 태그안에 묶여있으면 감싸는 형태
+fmt:setBundle -> 
+
+properties : 설정, 메세지(다국어)
+키=값
+키=값
+
+# -> 주석
+
+
+병렬 리소스 방식
+commons_ko.properies -> 한국어
+commons_en.properies -> 영어
+
+
+java.text 패키지
+MessageFormat
+
+
+java.util 패키지
+ResourceBundle
+
+- 치환 기능
+
+
+6. fmt:requestEncoding
+  -> request.setCharacterEncoding(...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

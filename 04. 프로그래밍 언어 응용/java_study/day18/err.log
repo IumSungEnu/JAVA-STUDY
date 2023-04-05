@@ -1,0 +1,2 @@
+Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.toUpperCase()" because "str" is null
+	at exam03.Ex03.main(Ex03.java:12)

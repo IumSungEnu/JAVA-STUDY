@@ -1,0 +1,93 @@
+커스텀 액션
+
+커스텀 액션을 만드는 방법
+1. 태그 파일
+.tag
+@tag : @page와 비슷하고 정의 속성도 매우 비슷하다.
+  body-content
+    - 단일 태그 <태그명/> : empty
+    - 내용물이 있는 태그 (열린태그) <태그명> ~ </태그명>
+      -scriptless : 스크틀릿 태그를 제외한(자바코드)
+	-EL식, HTML 사용
+      - tagdependent 
+	- 스크립틀릿, EL식을 제외한 내용
+
+
+  - trimDirectiveWhitespaces : 공백제거★
+
+  <jsp:doBody /> : 태그 안쪽에 입력된 컨텐츠
+
+  - rtexprvalue- true : EL식 변수 허용(기본값)
+	      - false : EL식 변수 허용x
+		     (직접 입력 정수, 문자 ...)
+
+
+@include :다른 태그 파일을 포함한다.
+@attribute 는 아래 코드에서 var이 attribute를 나타낸다.
+<c:set var="변수명">
+
+  - name="속성명"
+  - 속성명 - 자바변수
+	 - EL식 속성
+
+  - type
+     - java.lang.String : 기본값
+     - java.lang.Integer : 정수(기본형x, 래퍼 클래스)
+     - java.lang.Long
+     - java.lang.Double : 실수
+
+  - required ★
+     - false : 필수 항목 x
+     - true : 필수 항목 o
+
+  - dynamic-attributes
+      : 속성명을 지정하지 않고 사용
+      -> Map 형태
+      -> EL식 -> 마침표(.), []
+      -> 모든 속성의 자료형이 String
+      -> 자바코드(Map)
+         	-> 속성값을 가져와야 가능
+	->pageContext -> jspContext
+
+    - required 속성 설정 불가
+
+
+@variable
+  - name-given : 변수로 사용할 속성명
+  - variable-class="자료형" : 기본값은 java.lang.String
+  - scope
+       : AT_BEGIN : 태그 위쪽
+       : AT_END : 태그 닫힌 바로 아래쪽
+       : NESTED : 태그 안쪽
+
+  - name-from-attribute : 변수로 사용될 항목을 직접 
+
+@taglib
+
+
+
+tag 파일도 번역이 가능하다.
+내장객체가 담겨있다.
+HttpServletRequest request
+HttpServletResponse response
+JspWir out
+ServletConfig config
+application
+jspContext
+
+참고) pageContext의 상위클래스가 jspContext여서 형변환이 가능하다.
+
+
+2. 태그 클래스
+SimpleTag 인터페이스
+SimpleTagSupport
+
+태그파일을 이용해서 커스텀 액션 만들기
+1. 태그 파일에서 사용할 수 있는 지시어
+2. 한글을 포함하는 태그파일
+3. 애트리뷰트를 지원하는 태그 파일
+
+
+태그 파일의 내장 변수
+
+동적 애트리보트르르 지원하는 태그 파일

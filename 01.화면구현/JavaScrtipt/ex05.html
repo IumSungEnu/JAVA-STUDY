@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            .box{
+                padding: 200px;
+            }
+            #box1{
+                background: orange;
+            }
+            #box2{
+                background: gray;
+            }
+            #box3{
+                background: pink;
+            }
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded", function(){
+                const box1 = document.getElementById("box1");
+                const box2 = document.getElementById("box2");
+                const box3 = document.getElementById("box3");
+                box1.addEventListener("click", function(){
+                    console.log("박스1 클릭");
+                }, false);
+                box2.addEventListener("click", function(){
+                    console.log("박스2 클릭");
+                }, false);
+                box3.addEventListener("click", function(event){
+                    event.stopPropagation(); // 이벤트 전파 방지
+                    console.log("박스3 클릭");
+                }, false);
+            });
+        </script>
+        <div class="box" id="box1">
+            박스1
+            <div class="box" id="box2">
+                박스2
+                <div class="box" id="box3">박스3</div>
+            </div>
+        </div>
+    </body>
+</html>

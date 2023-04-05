@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            .menus{
+                height: 100px;
+                background: gray;
+                display: flex;
+                flex-direction: row;
+                /* align-items: center; */
+                /* justify-content: space-between; */
+                /* flex-wrap: wrap; */
+            }
+            .menu1{
+                background: red;
+                width: 0;
+                flex-grow: 1;
+            }
+            .menu2{
+                background: orange;
+                width: 0;
+                flex-grow: 2;
+            }
+            .menu3{
+                background: green;
+                width: 0;
+                flex-grow: 1;
+            }
+        </style>
+        <div class="menus">
+            <div class="menu menu1"><a href="#">메뉴1</a></div>
+            <div class="menu menu2"><a href="#">메뉴2</a></div>
+            <div class="menu menu3"><a href="#">메뉴3</a></div>
+        </div>
+    </body>
+</html>

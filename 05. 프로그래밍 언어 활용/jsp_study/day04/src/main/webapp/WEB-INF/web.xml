@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                       http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <!-- servlet-name을 작성할 때 -, 특수문자 사용 불가능-->
+        <servlet-name>helloServlet</servlet-name>
+        <servlet-class>servlets.HelloServlet</servlet-class>
+
+        <!--초기화 -->
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>value1</param-value>
+        </init-param>
+        <init-param>
+            <param-name>param2</param-name>
+            <param-value>value2</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>helloServlet</servlet-name>
+        <url-pattern>/hello/*</url-pattern>
+    <!--/* - 전체 모든 경로-->
+    </servlet-mapping>
+    <!--mapping은 요청을 처리하는데 동일한 이름을 찾아서 출력한다-->
+
+    <!--권한 통제를 할때-->
+    <filter>
+        <filter-name>helloFilter</filter-name>
+        <filter-class>filters.HelloFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>helloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>helloFilter2</filter-name>
+        <filter-class>filters.HelloFilter2</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>helloFilter2</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>commonFilter</filter-name>
+        <filter-class>filters.CommonFilter</filter-class>
+        <init-param>
+            <param-name>param1</param-name>
+            <param-value>param1</param-value>
+        </init-param>
+        <init-param>
+            <param-name>param2</param-name>
+            <param-value>param2</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>commonFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>

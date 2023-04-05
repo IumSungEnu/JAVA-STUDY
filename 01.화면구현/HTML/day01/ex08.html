@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>연습8</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>본인이름1</td>
+                <td>90</td>
+                <td>80</td>
+                <td>100</td>
+                <td rowspan="3" valign="top">메모</td>
+                <!-- rowspan : 행 병합 -->
+                <!-- valign : 상하 정렬 -->
+            </tr>
+            <tr>
+                <td>본인이름2</td>
+                <td>90</td>
+                <td>80</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>본인이름3</td>
+                <td>90</td>
+                <td>80</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td colspan="3" align="right">등수</td>
+                <td colspan="2" align="center">1</td>
+                <!-- colspan : 열 병합 -->
+                <!-- align : 좌우 정렬 -->
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

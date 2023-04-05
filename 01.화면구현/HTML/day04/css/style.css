@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+/* 공통 */
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    color: #000;
+}
+html{
+    font-size: 13px;
+}
+body{
+    margin: 0;
+}
+ul, ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    margin: 0;
+    padding: 0;
+}
+dl, dt, dd{
+    margin: 0;
+    padding: 0;
+}
+a{
+    /* a 태그에 있는 언더라인 제거 */
+    text-decoration: none;
+}
+img{
+    border: 0;
+}
+p{
+    margin: 0;
+}
+
+
+/* 상단 로고, 메뉴 영역 S */
+#logo_menu{
+    display: flex;
+    justify-content: space-between;
+    height: 66px;
+    align-items: center;
+    padding: 0 15px;
+    border-bottom: 1px solid #e6e6e6;
+}
+#logo_menu .logo img{
+    height: 34px;
+}
+#logo_menu i{
+    font-size: 2.1rem;
+}
+
+/* 상단 로고, 메뉴 영역 E */
+
+
+/* 상단 메인 메뉴 S */
+nav{
+    display: flex;
+    height: 44px;
+}
+nav a{
+    flex-grow: 1;
+    width: 0;
+    text-align: center;
+    /* 행단을 동일하게 맞추면 정확히 가운데 오게함 */
+    line-height: 44px;
+    color: #494949;
+    font-weight: bold;
+}
+
+
+/* 상단 메인 메뉴 E */
+
+/* 메인 배너 영역 */
+#main_banner img{
+    width: 100%;
+    display: block;
+}
+
+/* 메인 서브메뉴 영역 S */
+#main_submenu{
+    border: 10px solid gray;
+    border-left: 0;
+    border-right: 0;
+}
+#main_submenu ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+#main_submenu ul li{
+    /* calc() : 수치와 수치사이를 띄어쓰기 해야한다 */
+    width: calc(100% / 3);
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+}
+#main_submenu ul li:nth-of-type(3n+1){
+    border-left: 0;
+}
+#main_submenu ul li:nth-of-type(1),
+#main_submenu ul li:nth-of-type(2),
+#main_submenu ul li:nth-of-type(3) {
+    border-top: 0;
+}
+#main_submenu a{
+    display: block;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.077rem;
+    font-weight: 500;
+}
+
+/* 메인 서브메뉴 영역 E */
+
+
+/* 하단 퀵 버튼 S */
+#quick_btns{
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+    z-index: 10;
+}
+#quick_btns img{
+    display: block;
+    width: 50px;
+    cursor: pointer;
+}
+/* 첫번째것만 제외하고 그 밑으로 여백 10px 적용(형제) */
+#quick_btns img+img{
+    margin-top: 10px;
+}
+
+/* 하단 퀵 버튼 E */

@@ -1,0 +1,20 @@
+*{ 
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+
+#more_menus{
+    position: fixed;
+    width: calc(100% - 150px);  /* 더보기에서 오른쪽 150px만큰 공간을 남긴다*/
+    height: 100%;
+    border-right: 1px solid #000;
+    background: gray;
+    left: calc((100% - 150px) * -1);
+    top: 0;
+    transition: left 1s;
+}
+#more_menus.on{
+    left: 0;
+}

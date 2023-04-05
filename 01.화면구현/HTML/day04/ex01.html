@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            .box{
+                width: 100px;
+                height: 100px;
+                background: orange;
+                opacity: 0.1;
+                transition-duration: 1s;
+                /* transition-property: width, height, opacity; */
+                /* 전체 적용 */
+                transition-property: all;
+                /* linear : 일정한 움직임 */
+                /* ease-in-out : 느렸다가 빠르게 */
+                /* transition-timing-function: ease-in-out; */
+                /* transition-delay : 대기 시간 */
+                /* transition-delay: 1s; */
+                transition:  all 1s ease-in-out 5s;
+            }
+            .box:hover{
+                width: 200px;
+                height: 200px;
+                opacity: 1;
+            }
+        </style>
+        <div class="box"></div>
+    </body>
+</html>

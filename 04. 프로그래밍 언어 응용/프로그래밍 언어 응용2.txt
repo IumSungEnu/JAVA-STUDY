@@ -1,0 +1,1077 @@
+java.lang 패키지
+String
+Exception
+
+Integer
+Long
+
+컴파일러가 자동 추가해주는 것들
+1. import java.lang.*;
+2. extends Object
+3. 기본 생성자 추가(생성자 메서드가 정의가 안된경우)
+4. super() : 생성자 메서드의 첫번째 라인
+5. 인터페이스
+      - public abstract 추상 메서드
+      - public static final 정적 상수
+6. 지역 내부 클래스(지역변수의 상수화)
+      - 지역 내부의 객체의 메서드가 사용중이면
+      -> 상수화
+        final
+
+
+
+Object 클래스
+1. toString()
+public String toString(){
+   return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+
+   Object
+       Class getClass() : 생성되어 있는 class 객체 변환
+       Class 클래스 - 클래스의 정보 : 메서드, 생성자, 멤버변수, ...
+
+    패키지명.클래스명@16진수로 변환된 객체의 주소
+
+    // 참조변수를 출력했을때 toString() 메서드가 자동 호출
+     exam03.Student@27d6c5e0
+
+
+  - 주로 재정의를 통해서 멤버 변수 값을 확인하는 용도
+
+
+
+
+
+2. equals() 메서드 : Object equals : 동일성 비교(주소)
+
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+
+비교
+   동일성 - 완전 일치(주소, 물리적 일치성)
+   (==)
+    (Object::equals)
+
+   동등성 - 값, 논리적으로 일치성
+    기본 정의
+    Object::equals를 재정의 해서 동등성 비교 많이 사용
+    Object::hashCode()
+
+    참고) 집합 자료(Set) : 중복이 없는 자료 
+
+
+
+
+
+3. hashCode()
+  - 기본 정의 : 인스턴스(객체)의 주소(가상의 주소)
+
+  java.util.Objects : 객체를 다루는데 편리한 유틸 기능
+      hash -> 해시코드 생성
+
+  java.util.Arrays : 배열을 다루는데 편리한 유틸 기능
+  java.util.Collections : 컬렉션을 다루는데 편리한 유틸 기능
+
+
+========================================================================
+
+2023.03.08 
+
+24일차
+
+4. Class getClass()
+Class클래스 객체 -> 클래스 로더 -> 클래스 -> 자동생성
+- 모든 클래스의 정적 변수 class
+- getClass
+
+클래스의 정보가 담겨있는 클래스 객체이다.
+
+
+
+
+String 클래스
+1. String을 선언하는 두가지 방법
+String str = "abc";  -> 일반적으로 가장 많이 사용
+String str = new String("abc");
+equals
+
+
+2. String 클래스의 final char[] 변수
+
+
+(JDK12 이후 byte[] 배열로 변경)
+3. StringBuffer와 StringBuilder 클래스 활용하기
+- 
+StringBuffer sb = new StringBuffer()
+byte[] value = new byte[16]; //버퍼
+
+StringBuffer sb = new StringBuffer(100)
+byte[] value = new byte[100]; //버퍼 -> 매개변수가 있으면 버퍼라는 공간안에 넣어 반환한다.
+
+
+
+===================================================================
+
+2023.03.09
+
+25일차
+
+
+Wrapper 클래스
+
+- 기본 자료형을 감싸는 클래스
+class Integer{
+    ...
+    int value;
+    ...
+}
+
+
+1. 기본 자료형을 위한 클래스
+byte -> Byte
+short -> Short
+int -> Integer
+long -> Long
+
+char -> Character
+float -> Float 
+double -> Double
+
+boolean -> Boolean
+
+
+
+
+2. Integer클래스 사용하기
+Integer
+  .valueOf
+    -> byte 범위의 숫자 -> 동일 객체
+
+
+3. 오토박싱과 언박싱
+
+
+
+유용한 클래스
+
+1. java.long.Math 클래스
+abs -> 절대값
+pow(a, b) -> a의 b승
+ceil -> 올림
+floor -> 버림
+round -> 반올림
+random() -> 0~1 미만의 무작위 수
+
+
+2. java.util.Objects 클래스
+static hash(Object... args)
+
+고정 해시 -> 같은 조합의 값 -> 같은 해시
+
+
+
+3. java.util.Random 클래스
+
+
+4. java.util.Scanner 클래스
+
+
+5. java.util.StringTokenizer 클래스
+
+
+String - 문자열을 다루는 메서드
+  boolean contains
+  boolean startsWith
+  boolean endsWith
+
+  int indexOf - 문자열의 위치, 없는 문자열이면 -1
+  (왼쪽 -> 오른쪽)
+
+  int lastIndexOf -> (오른쪽 -> 왼쪽)
+
+  static String format
+
+    %s -> 문자열
+    %c -> 문자
+    %d -> 정수
+    %f -> 실수
+    %n -> 줄개행
+
+  PrintStream System.out
+	println() -> 출력 + 줄개행 문자(\n)
+	print() -> 출력, 줄개행x
+	printf(String format, Objext... args)
+
+\n -> new Line -> 줄개행
+\r -> carriage return -> 첫번째 칸으로 이동
+\t -> 탭키 1번 눌렀을때와 동일
+\b -> 백스페이스 키를 눌렀을때와 동일
+\r\n -> 엔터키
+
+
+
+
+========================================================================
+
+2023.03.10
+
+27일차
+
+
+isEmpty() - 공백이 없는 비어있는 문자
+isBlank() -> 공백을 포함한 비어있는 문자
+
+trim() + isEmpty() -> isBlank()
+
+
+
+------------------------------------------
+
+
+열거형(enums) -> 추상클래스이다. (상속x) -super 호출이 안된다.
+목적이 명확한 클래스의 일종이다.
+
+1. 열거형이란?
+클래스의 일종이고 상수만을 관리하기 위한 클래스이다.(요즘에 자주 쓰이기 시작)
+
+예) java.util.Calendar -자주 사용하지는 않는다.
+
+
+
+2. 열거형 정의와 사용
+-> java.lang.Enum의 하위 클래스
+enum 클래스명 { 상수, ... }
+
+- 대문자로 작성
+
+Enum 상수 -> 정적 상수
+
+  int ordinal() : enum 상수의 순서 번호(위치)
+  String name() : enum 상수의 이름(상수명)
+  static valueOf(String name) 반환
+  Enum.valueOf(Class class, String name)
+
+  
+추상메서드
+abstrac class Tansportation extends java.lang.Enum{
+    public static final Tansportation SUBWAY = new Tansportation(1450);
+    public static final Tansportation BUS = new Tansportation(1350);
+    public static final Tansportation TAXI = new Tansportation(4000);
+    public static final Tansportation TRAIN = new Tansportation(10000);
+
+    private Tansportation{ } -> 용도가 한정
+}
+
+
+2. 모든 열거형의 상위 클래스
+4. 컴퍼일러가 자동으로 추가해주는 메서드
+5. 열거형에 멤버 추가하기
+6. 열거형 추상크래스 추가하기
+
+
+----------------------------------------------
+
+
+애너테이션(annotation)
+용도가 한정된 클래스의 일종
+
+
+1. 에너테이션이란
+  주석, 주해 - 설명을 위한 기능(정보 제공, 정보 전달)
+
+@애너테이션명
+- 인터페이스
+-@interface 애너테이션명 extends java.lang.annotation.Annotation{
+
+}
+
+
+2. 표준 애너테이션
+JDK에 정의된 애너테이션
+  @Override
+  @SuppressWarning
+  @Functionlnterface ...
+  @Deprecated
+  @SafeVarargs
+
+
+3. 메타 애너테이션
+애너테이션을 만드는 애너테이션
+  @Retention  ★
+	-RetentionPolicy
+		SOURCE - 소스상에서만 존재하고 컴파일되면 제거
+		           - 컴파일러가 참고하는 애너테이션
+		           - @Override
+			- 이 메서드는 재정의 메서드이다 -> 컴파일러 정보 전달
+		           
+		CLASS - 기본값 (거의 사용하지 않는다)
+		         - 소스상에도 존재, 클래스에서 존재, 실행중에는 동작 x
+
+		RUNTIME - 실행중에 정보 체크
+
+			- @Controller
+
+  @Target      ★
+	- ElementType
+		.TYPE -> 클래스, 인터페이스 , 애너테이션, Enum ...
+		.TYPE_USE -> 타입이 사용되는 모든 곳 - 참조 변수(참조자료형 멤버변수, 매개변수)
+		.FIELD :멤버변수
+		.PARAMETER : 매개변수
+		.METHOD -> 메서드
+		.ANNOTION_TYPE :애너테이션
+		.mETHOD : 메서드
+		.CONSTR
+		
+수상메서드 항목 -> 설정 항목
+	value -> 설정시 생략가능	
+
+  @Documented
+  @Repeatable
+  ...
+
+
+  default - 기본값 키워드
+
+String[] value;
+
+@MyAnno(value ="값") -> @MyAnno("값")
+@MyAnno(value ={"값", "값2"})  -> @MyAnno({"값", "값2"})
+
+
+Class
+Annotation getAnnotation
+Annotatioon[] getAnnotation
+
+
+java.lang.annotation.Annotation -> 모든 애너테이션의 구현
+
+
+
+
+
+
+
+
+
+
+
+
+===============================================================
+
+2023.03.13
+
+29일차
+
+지네릭스
+
+1. 지네릭스란?
+- 타입 안정성
+- 형변환의 번거로움을 줄인다
+
+
+2. 지네릭 클래스의 선언
+
+
+3. 지네릭스의 용어 
+
+1) 지네릭 클래스 
+Box<T>
+
+2) 타입변수
+T
+
+T(Type)
+
+*int는 안된다.
+
+3) 원시타입
+Box
+
+
+4. 지네릭스의 제한
+
+
+5. 지네릭 클래스의 객체 생성과 사용
+- 타입 일치
+- 상속관계0
+- 추정가능한 경우 생략 가능
+
+
+6. 제한된 지네릭 클래스
+-extends : 상한 제한
+ 예) extends Fruit -> Fruit 또는 하위 클래스
+
+- & : 인터페이스 제한
+
+
+
+지네릭 메서드
+- 타입 -> 메서드가 호출될때 결정됩니다.
+
+7. 와일드 카드
+1) ? -> Object
+
+2)extends - 상한 제한
+? extends Fruit
+   -> Fruit(명확하게 인식)
+
+3) supper -> 하한 제한
+? extends Apple
+    -> Apple, Fruit, Object
+
+8. 지네릭 메서드
+
+
+
+-------------------------------------------
+컬렉션 프레임워크(Collections Framework)
+->데이터군을 다루는 표준화된 설계
+
+컬렉션(Collections)
+- 데이터군
+- 데이터 = 자료
+
+프레임워크(Framework)
+- 표준화된 설계 틀
+
+설계 기준 - 자료 구조를 바탕으로 체계적으로 설계
+ Collection 
+
+1. 순차자료구조 
+- List
+  1) 순서가 유지되는 자료(배열).
+  2) 중복 데이터를 허용
+
+2. 집합자료구조
+- Set
+  1) 중복을 허용하지 않는다. 합집합 그림 비교
+  2) 순서 유지 x
+
+3. 사전자료구조
+- Map
+  1) 키와 값 쌍의 구조
+    키 - 값을 찾기위한 검색 키워드
+    (키워드는 명확하게 1개가 있어야 한다. 예)_사전에서 A를 찾는데 2개 이상이 있을경우(애매해짐)
+
+  2) 키 - 중복 X(집합 자료)
+  3) 값 - 중복 O(동음의의어 : 예)_사전에서 A를 같은 키워드로 찾았는데 값이 다를때)
+
+Collection
+  List
+  Set
+
+Map
+
+
+컬렉션 프레임워크 핵심 인터페이스
+
+1. List
+  추가
+    boolean add(E e) : 끝에 추가
+	   add(int index, E e) :
+		: index 위치에 추가
+  
+  조회
+    E get(int index) : index 위치에 있는 요소 조회
+
+    요소의 존재 유무
+	boolean contains
+	int indexOf
+	int lastIndexOf
+	boolean isEmpty()
+
+  삭제
+    E remove(int index) : index 위치에 있는 요소 삭제
+
+  변경
+    set(int index, E e) : index 위치에 있는 요소 변경
+
+  갯수
+    int size() : 요소의 갯수
+
+  구현 클래스
+    ▶ArrayList - 배열의 구현 클래스
+       Object[]
+	장점
+	- 끝에 추가, 끝에서 제거 -> 효율적 -> 스택구조의 구현체를 만들기가 편하고 성능 O
+	- 물리적 배열
+	- 조회 속도가 매우 빠르다.
+	단점
+	- 데이터의 중간 추가, 맨앞 삭제 -> 새로운 배열이 매번 생성되야 한다
+	- 메모리 낭비(성능이 저하) 
+
+    ▶LinkdeList
+      Queue 인터페이스
+        -큐의 구조체로 앞으로 나가는 것을 poll, 뒤에서 추가되는 것을 offer
+	offer(E e) :끝에 추가 : add(E e)
+	E poll() : 가장 앞에 있는 요소 꺼내기
+
+    ▶Vector
+
+
+    ▶Stack
+       	 push(E item) : 끝에 추가
+       	 E pop() : 끝에서 꺼내기
+
+    ▶Queue
+	LinkedList
+
+반복자
+lterator, Listlterator, Enumeration
+
+Collection
+lterator는 자주 사용하지는 않는다.
+
+  ▶lterator
+    - boolean hasNext() : 다음 요소의 존재 유무
+    - E next() :  다음 요소를 꺼내올때
+
+  ▶Listlterator - List 인터페이스에만 정의(Set은 사용불가)
+    - 순방향, 역방향 조회
+    순방향
+      - boolean hasNext()
+      - E next()
+    역방향
+      - boolean hasPrevious()
+      - E next()
+
+  ▶Enumeration(옛날것으로 자주 쓰이지 않는다-Collections에 포함 -> list,set가능)
+      - boolean hasMoreElements()
+      - E nextElement()
+
+
+2. Set
+1) 중복이 없는 자료 구조
+  중복 체크 기준
+    - equals and hashcode
+
+2) 순서가 유지되지 않는다.
+
+  추가 
+    add(E e)
+
+  조회
+    X -> 순서가 특정되지 않는다.
+
+    요소의 존재 유무
+	contains(Object o)
+	isEmpty()
+
+  제거
+    remove(Object e)
+
+  갯수
+    int size()
+
+  구현 클래스
+    HashSet
+    SortedSet(상위) - TreeSet : 정렬과 관련
+       정렬 기준
+	- java.lang.Comparable
+	    int compareTo
+
+	- java.util.Comparator
+	    int compare(T o1, T o2)
+
+
+3. Map
+- 사전 자료구조
+
+추가
+  put(K key, V value)
+    - key 값이 존재하면 교체
+
+조회
+  V get(K key)
+    
+    값을 체크하는 두가지
+        키 - boolean containsKey(K k)
+        값 - boolean containsValue(Object o)
+
+    키만 조회
+         Set<K> keySet();
+
+    값만 조회
+         Collection<V> values()
+
+    키와 값 함께 조회
+         Set<Map.Entry<K, V>> entrySet()
+
+제거
+  V remove(K key)
+
+  총 갯수
+         size()
+
+         clear()
+          ....
+ 
+
+    구현 클래스
+          HashMap
+          TreeMap(HashMap + 정렬)
+	키값의 정렬
+	  - 기준
+	    
+
+           put
+	-> Map.Entry(키, 값) 객체
+	-> Map.Entry[] table에 추가
+
+
+
+컬렉션 프레임워크
+- toString[] -> 
+
+
+
+
+Arrays - 뒤에 s가 붙어있으면 편의기능을 나타낸다.
+  List asList(T ...)
+
+
+
+
+
+
+
+==============================================================
+
+2023.03.15
+
+30일차
+
+람다식
+
+1. 람다식이란
+함수를 하나의 식으로 표현한 것으로 함수형 프로그래밍을 위해서 사용합니다. 
+함수는 하나의 기능을 수행하며 함수는 값을 나타냅니다. 매개변수와 반환값으로 사용이 가능합니다.
+
+함수형 프로그래밍을 위해서 함수를 수행한다.
+ -> 함수는 하나의 기능을 수행
+함수는 값이다.
+  - 매개변수로 사용가능
+  - 반환값으로 사용가능
+
+인터페이스 -> 지역 내부 클래스 객체 생성
+               -> 추상 메서드를 하나만 정의
+
+인터페이스 -> 객체
+  - 상황 : 지역(함수), 멤버 변수
+  - 미구현된 메서드를 재정의
+
+
+
+
+
+2. 람다식 문법 살펴보기
+3. 람다식 사용하기 
+
+
+
+4. 함수형 인터페이스
+
+@Fnuctionallnterface
+   - 인터페이스에 하나의 추상 메서드만 허용
+
+java.util.function 패키지 - 기본 함수형 인터페이스의 4가지 유형
+1) 매개변수가 X, 반환값이 O는 경우
+  - 인터페이스 Supplier<T>, 메서드 T get()
+
+2) 매개변수 1이 있고 반환값이 X는 경우
+  - 인터페이스가 Consumer<T>, 메서드 void accept(T t)
+
+3) 매개변수가 1개이고 O, 반환값이 O는 경우  -> 일반적
+  - 인터페이스가 Function<T, R>, 메서드 R apply(T t)
+
+4) 매개변수가 1개이고 O, 반환값이 boolean인 경우
+  - 인터페이스가 Predicate<T>, 메서드가 boolean test(T t)
+
+
+
+
+매개변수가 2개인 경우 -> Bi
+1) 매개변수가 2개이고 반환값 X는 경우
+  - 인터페이스 BiConsumer<T, U>, 메서드 void accept(T t, U u)
+
+2) 매개변수 2, 반환값 O
+  - 인터페이스 BiFunction<T, U, R>, 메서드 R apply(T t, U u)
+
+3) 매개변수 2, 반환값 boolean
+  - 인터페이스 BiPredicate<T, U>, 메서드 boolean test(T t, U u)
+
+*Supplier가 없는 이유 : 매개변수가 없기 때문에
+
+
+
+
+
+매개변수와 반환값이 같은 경우
+1) 매개변수가 1개일때
+UnaryOperator<T> : Function<T,T>
+    T apply(T t)
+
+2) 매개변수가 2개인 경우
+BinaryOperator<T> : Function<T,T,T>
+    T apply(T t1, T t2)
+
+
+
+
+
+
+5. 기본형 사용하는 함수형 인터페이스
+
+
+6. Function의 합성과 Predicate의 결합
+
+Function
+두개의 기능은 같은 기능인데 쓰이는 용도가 다릅니다.
+  andThen
+  compose
+  identity : 항등 함수 -> x -> y : 값이 들어오면 그대로 반환
+
+
+Predicate - 조건식을 만들때 사용
+  - 논리 연산자 대신하는 메서드
+  - and
+  - or 
+  - negate(부정 연산)
+
+
+
+
+
+
+7. 메서드 참조
+- 충분히 예상 가능한 형태로 축약할 수 있다. 
+클래스명::메서드명
+객체참조변수::메서드명
+
+
+-----------------------------------------------------------
+
+스트림(Stream)
+1. 스트림이란?
+배열과 컬렉션 상관없이 데이터군을 다양한 방식으로 통일성있게 하나의 객체로 바꾸어 처리하기 위해 사용
+java.util.stream 패키지
+1) 처리의 통일성
+2) 재사용성, 효율성
+
+3) 원본소스 변경 X
+4) 일회용
+5) 내부 반복 처리
+
+
+1.5 스트림 객체로 만드는 방식(2가지)
+배열     Arrays.stream(자료형) 
+컬렉션  Collection::Stream( )  
+
+
+
+
+2. 스트림의 연산
+1) 중간 연산
+  - 반환값 Stream 형태의 자료형
+  - 작업 내용을 정의
+
+IntStream.range(시작번호, 종료번호)
+	.rangeClosed(시작번호, 종료번호)
+
+skip() -   건너뛰기
+limit()  - 갯수 제한
+  - java.util.Random
+
+filter() - 필터
+distinct() - 중복제거
+
+sorted() - 정렬
+map()
+
+peek()
+
+     Stream<T> peek(Consumer<T> ...) -> 중간연산
+참고)void forEach(Consumer<T> ...) -> 최종연산
+
+
+mapTolnt() : IntStream
+mapToLong() : LongStream
+mapToDouble() : DoubleStream
+
+
+
+
+
+
+
+
+
+
+
+
+2) 최종연산
+  - 중간연산을 수행하고 최종 연산도 수행해서 결과를 호출하는 것
+  - 반환값 타입이 Stream이 아닌 자료형
+  - 실제 연산 수행(중간연산 + 최종연산)
+
+forEach() : 
+allMatch() : 모든 요소가 조건에 매칭될때 true
+	   - Predicate
+anyMatch(): 어떠한 요소라도 조건에 매칭될때 true
+	   - Predicate
+
+noneMatch() : 모든 요소가 조건에 매칭이 안될때 true  <->  allMatch() 
+
+첫번째 매칭 요소 반환(filter와 함께 많이 사용)
+findFirst() : 일반 스트림
+findAny() : PararellStream
+
+count() - Stream, xxxStream
+
+IntStream, LongStrream ...
+sum()
+acerage()
+
+
+
+
+
+
+reduce() : 합성곱
+
+
+
+4. 특정 
+
+5. 빈 스트림
+6. concat()
+
+
+
+
+
+
+7. Optional와 OptionalInt, OptionalDouble ...
+
+
+null값에 특화되어 있는 클래스 Optional(null값을 처리하기 위한 기능)
+
+class Optional<T>{
+   ...
+   T value;
+   ... 
+}
+
+T get() : value값을 조회 ->
+T orElse(T other) : value값이 null -> other로 대체
+
+
+
+===============================================================
+
+2023.03.17
+
+31일차
+
+
+8. collect()
+
+Collectors(java.util.stream.Collectors)
+스트림 컬렉션과 배열로 변환 - toList(). toSet(), toMap(),
+toCollection(), toArray()
+
+문자열 결합 - joining()
+
+그룹화와 분할 - groupingBy(), partitioningBy()
+
+
+
+
+
+---------------------------------------------------
+
+
+입출력(I/O)
+I/O -> Input(입력) / Output(출력)
+        데이터 입력 / 데이터 출력
+        파일로 입력 / 파일로 출력
+
+java.io 패키지
+
+
+1. 스트림(stream)
+- 여기서의 스트림은 데이터의 이동 통로를 말합니다.
+- 입력 스트림
+- 출력 스트림
+
+
+- java.util.stream과는 전혀 다른 개념이다. ★★★
+
+바이트기반 스트림
+1. InputStream(입력 스트림)
+  기반 스트림 
+    - 직접 데이터에 접근하는 스트림
+    - FilelnputStrream : 파일 기반
+    - ByteArrayInputStream : 메모리 기반
+
+       -int read()
+	- 1바이트씩 이동하면서 읽기
+	- 다 읽고 나면 -1값을 반환
+	- unsigned byte(양수) : 0 ~ 255, -1
+
+  보조 스트림
+    - 직접 데이터 접근 X
+    - 기반 스트림 또는 다른 보조 스트림에 추가 기능을 제공
+
+  
+
+   FilterInputStream -> 입력스트림 -> 보조스트림
+       BufferedInputStream
+       : 버퍼(기본값 8kb)
+
+       DataInputStream - DataInput 인터페이스
+	- 기본형 자료를 처리할 수 있는 편의 메서드
+
+       ObjectInputStream - 저장된 객체(직렬화된)를 원 객체로 읽어오는 기능
+
+
+
+* 직렬화란 객체를 데이터 스트림으로 만드는 것을 뜻합니다.
+ 객체에 저장된 데이터를 스트림에 일렬로 저장하는 기능을 가지고 있습니다. 
+
+
+2. OutputStream(출력 스트림)
+  기반 스트림
+    - 데이터에 직접 접근하는 스트림
+    - FileOuputStream : 파일
+    - ByteOutputStream : 메모리
+
+
+  보조 스트림
+    - FilterOutputStream : 파일
+        BufferedOutputStream : 기본값 : 8kb 버퍼
+        DataOutputStream - DataOutput 인터페이스
+           - 기본자료형으로 처리할 수 있는 편의 메서드
+
+    - ObjectOutputStream : 객체를 파일로 저장할 수 있는 기능
+         객체(인스턴스 변수) -> 문자열 변환(직렬화) -> 파일 저장
+
+    파일로 저장하는 데이터 - 객체를 다시 복구할때 필요한 데이터만 저장한다.
+    (인스턴스 변수만 저장한다)
+
+    클래스 -> 로더 -> 메서드, 정적자원, 상수 -> 공유   
+
+    객체의 인스턴스 변수 -> 문자열 형태 -> 파일로 저장(직렬화)
+
+    민감한 작업
+     - 변수의 값 -> 파일 저장하면 노출
+     - 노출된 파일 다른 장소에서 복구O
+     - implements Serializable -> 인터페이스를 정의해야 한다.
+
+        java.io.Serializable 인터페이스 - 정의된 추상 메서드x, 빈 인터페이스
+	- 작업에 대한 동의에 대한 의미(마커 인터페이스)
+
+
+        List
+        Map
+
+        직렬화 배제 -> transient
+
+
+
+
+문자기반 스트림(2바이트, 3바이트 단위)
+
+1. Reader
+  기반 스트림
+    - 데이터에 직접 접근하는 스트림(파일, 메모리, 오디오)
+    - FileReader
+    - CharArrayReader
+    - StringReader
+
+  보조 스트림
+    - BufferdReader : 버퍼(기본 8kb)
+    - 데이터에 직접 접근 X
+    - 기반 스트림 또는 다른 스트림에 보조기능, 추가기능
+
+
+
+2. Writer(문자기반 출력 스트림 -2, 3 bytes)
+  기반 스트림
+    - 직접 데이터의 접근하는 스트림
+    - FileWriter
+    - CharArrayWriter
+    - StringWriter
+    - PrintWriter
+
+    참고)
+      PrintStream
+ 
+  보조 스트림
+      BufferdWriter
+
+
+
+
+예) 바이트 기반 입력, 출력 스트림잒에 안되는 경우 -> 한글깨짐 발생
+바이트 기반 -> 문자단위 스트림
+입력 스트림
+  InputStreamReader
+
+출력 스트림
+  OutputStreamWriter
+
+
+
+표준입출력과 File
+1. 표준입출력(StdIn, StdOut)
+1)System.in 
+구현체 InputStream - 콘솔에서 바이트 단위로 읽기
+
+2)System.out  - 글자색이 검은색
+         PrintStream - 문자단위 스트림, PrintWriter
+
+
+3)System.err  - 글자색이 빨간색
+          PrintStream
+
+
+
+System
+  setInt(InputStream in) : 입력 스트림 변경
+  setOut(PrintStream out) : 출력 스트림 변경
+  setErr(PringStream err) : 출력 스트림 변경
+
+
+2. File
+  - 파일과 디렉토리를 다루는데 필요한 기능을 말한다.
+  - 파일 또는 디렉토리의 정보 정리 조회(경로, 파일명, ..., 파일목록)
+
+  - 생성
+    - 파일생성, 디렉토리 생성
+   
+  - 삭제
+    - ...
+
+  윈도우즈
+    C:\폴더\파일 ...
+
+  맥, 리눅스
+    /폴더/파일
+
+  File
+    separator : 디렉토리 구분자(윈도우즈 - \, 리눅스 - /)
+    pathSeparator : 환경 변수 구분자(윈도우즈 - ; , 리눅스 - :)
+
+
+
+
+
+
+
+
+
+
+
+

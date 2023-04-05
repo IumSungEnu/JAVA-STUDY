@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습3</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1>회원가입</h1>
+        <form method="post" action="ex03_ps.html">
+            <input type="hidden" name="mode" value="join">
+            <dl>
+                <dt>아이디</dt>
+                <dd>
+                    <!-- 여기서 value는 기본 작성된 형식 -->
+                    <input type="text" name="userId" value="user01" required placeholder="아이디는 8자 이상 입력하세요" minlength="8">
+                </dd>
+            </dl>
+            <dl>
+                <dt>비밀번호</dt>
+                <dd>
+                    <input type="password" name="userPw" required placeholder="비밀번호를 입력하세요">
+                </dd>
+            </dl>
+            <dl>
+                <dt>회원명</dt>
+                <dd>
+                    <input type="text" name="userName" required placeholder="회원명을 입력하세요">
+                </dd>
+            </dl>
+            <dl>
+                <dt>email</dt>
+                <dd>
+                    <input type="email" name="email">
+                </dd>
+            </dl>
+            <dl>
+                <dt>생년월일</dt>
+                <dd>
+                    <input type="date" name="birthDt">
+                </dd>
+            </dl>
+            <dl>
+                <dt>좋아하는 색상</dt>
+                <dd>
+                    <input type="color" name="color">
+                </dd>
+            </dl>
+            <dl>
+                <dt>나이</dt>
+                <dd>
+                    <input type="range" name="age" min="20" max="100">
+                </dd>
+            </dl>
+            <dl>
+                <dt>평생회원</dt>
+                <dd>
+                    <!-- name="lifeMember" - 하나의 동일한 그룹을 사용해야 하나의 선택지만 선택 가능하다 -->
+                    <label>
+                        <input type="radio" name="lifeMember" value="y" checked>동의함
+                    </label>
+                    <label>
+                        <input type="radio" name="lifeMember" value="n">동의안함
+                    </label>
+                </dd>
+            </dl>
+            <dl>
+                <dt>취미</dt>
+                <dd>
+                    <!-- *id와 for로 연결할 수도 있다. -->
+                    <input type="checkbox" name="hobby" id="hobby1" value="축구">
+                    <label for="hobby1">축구</label>
+
+                    <input type="checkbox" name="hobby" id="hobby2" value="독서">
+                    <label for="hobby2">독서</label>
+
+                    <input type="checkbox" name="hobby" id="hobby3" value="수영">
+                    <label for="hobby3">수영</label>
+                </dd>
+            </dl>
+            <dl>
+                <dt>자기소개</dt>
+                <dd>
+                    <textarea name="intro" rows="10" cols="30">자기소개 내용..</textarea>
+                </dd>
+            </dl>
+            <dl>
+                <dt>전화번호</dt>
+                <dd>
+                    <select name="mobile">
+                        <option value="010">010</option>
+                        <option value="011">011</option>
+                        <option value="070">070</option>
+                    </select>
+                </dd>
+            </dl>
+            <!-- 여기서 value는 이름 바꾸기 -->
+            <!-- <input type="submit" value="가입하기">
+            <input type="reset" value="다시입력"> -->
+
+            <button type="submit">가입하기</button>
+            <button type="reset">다시입력</button>
+        </form>
+    </body>
+</html>

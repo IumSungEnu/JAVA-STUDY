@@ -1,0 +1,53 @@
+복습
+
+
+시퀀스
+
+생성 
+CREATE SEQUENCE 시퀀스명;  -> 1부터 1씩 증가, 무한대
+
+
+CREATE SEQUENCE 시퀀스명
+  INCREMENT BY 수치 -> 수치씩 증가
+  START WITH  수치 -> 시작번호
+  MAXVALUE 수치 -> 최대값
+  MINVALUE 수치 -> 최소값
+  CYCLE - 최대 수치에 도달하면 다시 최소 수치부터 시작 | NOCYLE - 최대 수치에 도달하면 오류
+  CACHE 수치 | NOCACHE - CACHE 20
+
+
+시퀀스 객체
+  .CURRVAL : 현재 번호
+  .NEXTVAL : 현재 번호를 증가, 반환
+
+DUAL -> SYS 계정이 소유하고 있는 가상의 테이블
+	- 단일 값을 임시로 확인할때 사용
+
+
+    10씩 증가
+
+
+
+ALTER SEQUENCE 시퀀스명
+    ....
+
+
+삭제
+DROP SEQUENCE 시퀀스명;
+
+
+
+
+
+인덱스(INDEX)
+목차
+
+생성
+CREATE INDEX 인덱스명 ON 테이블명(컬럼명 ASC - 기본값 | DESC, 컬럼명 ...);
+
+삭제
+DROP INDEX 인덱스명;
+
+
+
+

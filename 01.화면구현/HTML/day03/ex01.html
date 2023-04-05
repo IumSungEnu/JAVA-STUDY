@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            /*             
+            li:first-child{ color: red; }
+            li:last-child{ color: blue; } 
+            */
+            /* 
+            li:nth-of-type(2n){background: orange;}
+            li:first-of-type{background: red;}
+            li:last-of-type{background: blue;}
+            
+            선택자:before - 선택자의 자식 요소의 첫번째에 가상의 요소 추가
+                  :after - 선택자의 자식 요소의 마지막에 가상의 요소를 추가
+            ul:before{content: "Before";}
+            ul:after{content:"After";}
+             */
+
+             /* :not(선택자) - 선택자를 제외하고 선택 */
+            li:not(.menu5){background: orange;}
+            
+        </style>
+        <ul>
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+            <li class="menu5">메뉴5</li>
+            <li>메뉴6</li>
+            <li>메뉴7</li>
+            <li>메뉴8</li>
+            <li>메뉴9</li>
+            <li>메뉴10</li>
+        </ul>
+    </body>
+</html>

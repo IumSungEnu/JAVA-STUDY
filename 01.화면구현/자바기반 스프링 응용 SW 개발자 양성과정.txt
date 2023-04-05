@@ -1,0 +1,1660 @@
+
+
+2023.02.01 자바기반 스프링 응용 SW 개발자 양성과정(내일배움카드)
+
+1일차
+
+강사소개
+이용교 강사님 / 010-3481-2101
+
+강의자료
+https://github.com/yonggyo1125
+
+TMS
+https://koritic.cafe24.com - 훈련생모드
+
+학원 wifi 비밀번호
+15885890
+
+vscode 다운로드 설치
+구글 검색 - Visual Studio
+
+기획 과정
+ - 스토리보드
+
+
+-------------------------------------------------------------------------------------------------
+
+
+UI 표준 지침 및 설계 도구
+UI 설계서
+HTML - HyperText Markup Lang(문서)
+
+단축키 
+F5 : wep App(Crome) 크롬 클릭시 크롬으로 출력
+
+1. 태그
+내용이 있는 태그
+<태그명>...</태그명>
+
+내용이 없는 태그
+<태그명 /> -> '/' 생략 가능
+<mata /> -> <mata>
+
+2. 기본구조
+<!DOCTYPE html> - HTML5 버전
+<html>
+	<head> ...</head> - 사이트 정보, 자원(css, js)
+	<body>...</body> - 실제 출력되는 화면
+</html>
+
+단축키 : Shift + !
+
+3. 속성
+태그에 있는 부가적인 정보
+a 태그 : 링크 
+  - href="이동할 링크"
+
+img 태그
+
+4. HTML 문서
+
+5. Headings 태그
+h1 ~ h6 (번호가 작을수록 주제목, 클수록 부제목)
+
+6. p(문단태그)
+
+7. 주석(Comment)
+  - 설명 : 브라우저가 출력 무시
+  <!-- 설명 -->
+
+  - 특정 태그의 출력 배제
+
+단축키 : Ctrl + /
+
+8. 링크(a)
+  - 페이지 이동
+
+<a>
+  href : 페이지 이동
+  target : 페이지가 이동할 창(window)
+	_self : 현재 창(기본값)
+	_parent : 부모 창
+	_blank : 새창으로 이동
+	_top : 가장 상위 창
+
+  부모창(바로 위에 창) -> 자식창
+	-iframe : name 속성값
+
+  iframe 태그 : 현재 문서에 포함되는 웹 브라우저 창
+     - src : 주소 입력창
+     - width : 너비
+     - height : 높
+
+9. 줄개행(줄바꿈)
+<br />
+<br>
+
+10. 경로
+- 절대경로
+
+- 상대경로(반드시 기준이 있어야 한다)
+  - 기준 경로
+     .. -> 기준 경로보다 1단계 위쪽
+	cmd에서 이동
+	cd .. 이전 경로로 이동
+
+    기준 경로 - file://C:/Users/Administrator/Desktop/1.화면구현/HTML/day01/
+
+     file://C:/Users/Administrator/Desktop/1.화면구현/HTML/day01/ex06.html
+     file://C:/Users/Administrator/Desktop/1.화면구현/HTML/day01/images/logo.png
+     file://C:/Users/Administrator/Desktop/1.화면구현/HTML/day01/ex/ex07.html
+
+     ex06.html
+     images/logo.png
+
+11. 이미지 ★
+- alt : 대체 텍스트
+
+12. 테이블(tables) - 관리자 페이지에서 주로 사용
+표
+<table>
+  <tr> -> 행
+  <th> ->  제목
+  <td> -> 데이터
+
+  <thead>
+  <tbody>
+
+td
+    rowspan='병합할 행 갯수' : 행 병합
+    colspan='병합할 열 갯수' : 열 병합
+
+th, td 정렬
+-좌우 정렬
+ align = " left | center | right "
+-상하 정렬
+  valign = " top | middle | bottom "
+
+
+13. 리스트 태그
+ul(Unordered List - 순서 표기를 하지 않는 목록)
+  li
+  CSS - list-style
+	-disc
+	-circle
+	-square
+	-none - 안보임
+
+ol(Ordered List - 순서 표기를 하는 목록)
+  li
+type
+    - ' 1 ' : 숫자로 순서 표기(기본)
+    - ' A | a' : 알파벳 표기
+    - ' I | i ' : 로마자 표기
+
+설명 리스트
+dl(Description List)
+  dt - 설명 제목   
+  dd - 설명 내용   
+
+기타
+<style> ~ </style> -> CSS 문법을 해석해주는 태그
+<script> ~ </script> -> 자바스크립트 문법을 해석해주는 태그
+
+
+14. BLOCK && INLINE (예-네이버 뉴스)
+
+Block - 문단
+- 줄 개행(문단 ~ 문단 사이에 공간 존재)
+- 공간 o, 너비와 높이가 있다.
+- 상하좌우 외부 여백(O)
+<p>
+<div>
+
+Inline - 문장
+- 줄 개행x, 영역 끝에 도달 했을때 줄 개행
+- 공간을 결정할수 x, 너비와 높이 결정 x
+- 행간, 자간, 단어 사이 간격
+- 외부여백 좌우 가능(O)
+<a>
+<span>
+
+
+
+==============================================================
+
+2023.02.02
+
+2일차
+
+15. class 속성
+- 태그(요소)를 선택
+- 복수객 선택(동일한 이름을 가진 class를 여러가지 지정할 수 있다.)
+
+16. id 속성
+- 태그(요소)를 선택
+- 유일한 선택 속성(동일한 이름을 지정할 수 없다. 선택에 한계가 있다.)
+
+
+17. iframes
+18.<script> ...자바스크립트 코드.. </script>
+<script src="경로"></script>
+
+<link ...
+
+19. 뷰포트(viewport)
+- 보이는 화면
+
+모바일에서 거의 대부분 사용
+<meta name="viewport" content="width=device-width,user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+
+20. 시멘틱 요소
+- 의미를 명확히 알수 있는 태그(뼈대를 구성)
+table - 표
+li - 리스트
+p
+header
+footer
+nav - 메뉴
+aside - 더보기(예- 사이드 바)
+section
+article
+form - 양식
+
+
+21. 엔티티 문자
+&lt; - lesser than <
+&gt; - greater than >
+&nbsp; - 공백 1개
+&amp; - &
+
+22. form - 양식
+예) 네이버 로그인 형식(양식)
+<form>
+  - method : 제출 방법(GET, POST)
+  - action : 제출처 경로(서버 경로)
+
+    input	
+        type
+	-hidden : 숨김 값
+	-text : 한줄 입력
+	-password : 비밀번호 전용
+	-email : 이메일 형식
+	-number : 숫자 형식
+	-date : 날짜 형식
+	-color : 색상 형식
+	-range : 범위
+	-radio : 라디오 버튼, 여러개 중에서 한개 선택
+	  (하나의 그룹안에 들어있어야 한개만 선택이 가능하다)
+	-checkbox : 체크박스 버튼, 여러개 중에서 여러개 선택
+	   lable - 체크박스, 라디오버튼을 lable 태그로 감싸면 텍스트 클릭시 -> 체크박스 클릭
+	    *id와 for로 연결할 수도 있다.
+
+	  checked : 체크된 상태
+
+	-submit : 양식 제출
+	-reset : 양식 초기화
+
+    - name : 양식 데이터 이름
+    - value : 양식 데이터의 값
+    - required : 필수 입력 항목
+    - placeholder : 안내 문구
+    - minlength : 최소 자리수
+    - maxlength : 최대 자리수
+
+
+button
+    type 	- button : 일반 버튼
+           	- submit : 제출 버튼
+	- reset : 초기화 버튼
+
+select
+    option - 선택 항목
+        - value : 항목
+
+textarea : 여러줄 입력
+  rows - 몇 행
+  cols - 몇 칸
+
+div
+span
+
+
+
+
+
+CSS
+1. HTML에서 CSS를 적용하는 방법
+1) style 태그
+2) style 속성
+3) link 태그 - 외부 css 파일을 연결
+
+2. 선택자
+   선택자 {  스타일 속성 : 값; 스타일 속성 : 값; 스타일 속성 : 값; ...   }
+ 1) 태그명으로 선택, 태그 선택자
+    * : 모든 태그 - 공통적인 속성
+
+ 2) 클래스 선택자
+      - class 속성
+	.클래스명 { ... }
+
+ 3) 아이디 선택자
+      - id 속성
+	#아이디명 { ... }
+
+ 4) 스타일 속성으로 적용 - 거의 사용하지 않음
+
+
+
+3. CSS 적용 순서
+- 태그 < 클래스 < 아이디 < style 속성
+선택 범위가 좁아질 수록 우선순위가 된다.
+<style>
+            li { color: blue; }                    ↓
+            .menu { color: red; }               ↓
+            .menu2 { color: gray; }            ↓
+            #menu3 { color: skyblue; }       ↓
+            #menu4 { color: orange; }        ↓
+</style>
+- 같은 우선순위? 뒤에 적용된게 우선순위가 높다.
+
+!importatnt -> 우선순위 강제 적용(거의 사용하면 x)
+	       수정하기 어렵기 때문
+
+ 5) 조상 자손 선택자
+  조상 선택자 자손 선택자 { ... }
+        ←            →
+예)     ul             li
+ 
+ 6) 부모 자식 선택자
+   부모 선택자 > 자식 선택자 { ... }
+
+ 7) 형제 선택자
+   1. 일반 형제 선택자
+        선택자의 오른쪽 모든 형제
+        선택자 ~ 선택자 { ... }
+        
+    2. 인접 형제 선택자
+         선택자의 바로 오른쪽 형제
+         선택자 + 선택자 { ... }
+
+ 8) 그룹 선택자
+   선택자, 선택자, ... , 선택자 { 공통 스타일 ... }
+
+ 9) 가상 클래서 선택자
+    - 선택자의 상태를 가지고 선택
+	선택자 : 상태 { ... }
+	         :hover - 마우스 커서가 올라간 상태
+	         :checked - 체크된 상태 ...
+	         
+    - 순서를 가지고 선택
+        -- 반드시 부모 태그가 있어야 적용된다 --
+          선택자:first-child - 첫번째 자식 선택
+          선택자:last-child - 마지막 자식 선택
+          선택자:nth-child(숫자 또는 수식) - 숫자번째 또는 수식에 해당하는 자식 선택
+	
+
+         -- 태그의 종류만 가지고 적용 --
+	선택자:first-of-type
+	선택자:last-of-type
+	선택자:nth-of-type
+	
+	1, 3, 5, 7, 9, ...   /2로 나눴을때 나머지가 1
+	2n+1
+
+	2, 4, 6, 8, 10, ...   /2로 나눴을때 나머지 0
+	2n
+
+    - 가상의 요소를 추가해서 선택
+          선택자:before - 선택자의 자식 요소의 첫번째에 가상의 요소 추가
+                  :after - 선택자의 자식 요소의 마지막에 가상의 요소를 추가
+	
+	-content:"내용"
+
+    - 기타
+         :not(선택자) - 선택자를 제외하고 선택
+
+
+
+==========================================================
+
+
+2023.02.03
+
+3일
+
+4. 속성
+  폰트
+  font-size : 글자 크기
+     절대 사이즈 - 화소 기준, 
+        px
+
+     상대 사이즈 - 기준 사이즈 -> 상대적으로 사이즈 계산
+        rem - 기준 : 상위 태그의 폰트 사이즈 - 1rem
+        em - 기준 : 바로 위 태그의 폰트 사이즈 - 1em (잘 사용하지 x)
+
+   color : 글자의 색상
+      - 색상명
+      - RGB(빛의 삼원색) 
+         rgb(0~255, 0~255, 0~255);
+         rgba
+             a - 알파채널 : 투명도(0~1)
+ 		1 - 불투명
+		0 - 투명
+      - hex -> rgb -> 16진수 변환
+      - #ff0000 (hex법) -> #f00 (같은숫자끼리 생략가능)
+
+    text-align : 정렬
+        left(왼쪽)
+        right(오른쪽)
+        center(가운데)
+        justfy(양쪽 정렬)
+
+    font-weight : 글자의 굵기
+        normal | bold
+        100 ~ 900
+
+    font-family : 글꼴을 지정
+         맑은 고딕
+
+
+공간
+  블록 레벨 요소(block)
+    - 줄개행
+    - 공간 o(너비, 높이 설정)
+    - 외부 여백 - 상하좌우(o)
+    - 내부 여백 o
+    div
+
+  인라인 레벨 요소(inline)
+    - 줄 개행x
+    - 공간 x(너비, 높이 x)
+    - 외부 여백 - 좌우(o)
+    - 내부 여백 o
+    span
+
+display;
+  block; - 블록 레벨로 변경
+  inline; - 인라인 레벨로 변경
+  inline-block; - 인라인(줄개행x) + 블록(너비, 높이, 상하 외부여백o)
+  none; - 안보임 처리
+    참고)
+      visibility : visible - 보임 | hidden - 숨김 (실제 차지하는 영역은 그대로 유지)
+
+      flex
+
+여백
+  내부 여백(안)
+    - padding 
+    - padding-left, padding-right, padding-top, padding-bottom
+
+  외부 여백(바깥)
+    - margin 
+	: 20px; - 상, 하, 좌, 우 전부에 20px 외부 여백을 주겠다.
+	: 20px 30px;
+	 상,하  좌,우
+	: 20px 30px 10px;
+	  상    좌,우   하
+	: 20px 30px 10px 40px; - 4개일때는 위에서 부터 시계방향으로
+	  상     우     하    좌   
+
+    - margin-left :왼쪽 외부 여백
+    - margin-right :오른쪽 외부 여백
+    - margin-top :위쪽 외부 여백
+    - margin-bottom :아래쪽 외부 여백
+
+
+레이아웃
+box-size
+  - content-box(기본값)
+    - 사이즈를 내용기준으로 결정
+
+  - border-box
+    - 사이즈를 경계선을 기준으로 결정
+
+border - 경계선
+  - border-width : 경계선 두께
+  - border-style : solid(직선) | dotted(점선) | dashed(---) 
+  - border-color : 경계선 색상
+
+  - border : 두께 스타일 색상;
+
+border-radius : 경계선을 둥글게
+	50% -> 원
+
+
+배치
+position
+  절대 위치
+  static - 정적인(기본값)
+
+  상대위치
+  ralative - 
+    - 기준 
+      - 적용하는 태그(요소)가 위치하고는 좌표
+  absolute - 
+    - 기준
+      - 문서 전체 또는 상위 태그가 상대적인 위치라면 상위 태그가 기준
+	(relative, absolute, fixed)
+  fixed - 
+    - 기준
+     - viewport 기준
+     - 보이는 화면 기준
+
+
+  top - 위에서 아래로
+  bottom - 아래에서 위로
+  left - 좌에서 우로
+  right - 우에서 좌로
+
+  z-index : 요소의 층위 설정
+	숫자가 커질수록 앞쪽에 배치
+	
+float - 방향에 따라서 떠 다니듯이 배치 (지금은 거의 쓰이지 않음)
+  - left
+  - right
+
+clear - floac 속성을 제거
+  - left
+  - right
+  - both
+
+
+@media all and (max-width : 기준 사이즈) {
+		- 기준 사이즈까지 적용
+                     min-width
+		- 기준 사이즈 이상 적용
+  CSS -> 기준 사이즈에 선벽적으로 적용
+}
+
+background : 배경색, 배경 이미지
+  - background-color : 배경색
+  - background-image : 배경 이미지
+      url("이미지 경로");
+  - background-repeat : 배경 이미지 반복
+      repeat-x : 좌우 반복
+      repeat-y : 상하 반복
+      no-repeat : 반복 없음
+
+  - background-position : 배경이미지 위치
+        좌우   상하;
+
+	left | center | right 	top | center | bottom
+	좌측| 가운데 |우측 	 	상단| 가운데 | 하단
+
+
+overflow
+  - visible : 넘치더라도 보임
+  - hidden : 넘치는 부분 감춤
+  - scroll : 스크롤바 생성
+  - auto 
+
+
+transition : 전환 효과
+  스타일이 변환될때 -> 애니매이션 효과
+
+  transition-duration : 전환 지속 지간
+  transition-property : 속성
+  transition-timing-function : 애니매이션 효과
+
+
+opacity : 투명도
+    0(투명) ~ 1(불투명)
+
+
+
+
+=================================================
+
+2023.02.06
+
+4일차
+
+1. transition
+  - transition-duration : 전환효과 지속지간
+	초단위(예 -1s(1초), 0.5s(0.5초))
+  - transition-property : 속성명, 속성명, ...
+  - transition-timing-function : 애니매이션 효과 종류
+  - transition-delay : 전환 대기 시간
+
+  transition: 
+	property(속성) duration(지연시간) - 필수
+
+  opacity : 0~1(투명도)
+
+2. flexbox 
+배치
+부모 -> 자식
+부모 - display: flex;
+       - flex-direction : row; 왼쪽 -> 오른쪽
+       		    row-reverse; 오른쪽 -> 왼쪽
+       		    column; 위 -> 아래
+       		    column-reverse; 아래 -> 위
+       - align-items : 상하 정렬
+		    stretch : 높이를 부모 요소에 맞추기
+		    flex-start : 위쪽
+		    center : 가운데
+		    flex-end : 아래
+       - justify-content : 좌우 정렬
+		    flex-start : 왼쪽
+		    center : 가운데
+		    flex-end : 오른쪽
+
+		    공백으로 배치★★
+		    space-around : 각각 동일한 간격으로 여백
+		    space-evenly : 공평하게 동일한 여백
+		    space-between : 양쪽정렬처럼 끝에서 여백을 줌
+
+        - flex-wrap : wrap - 줄개행 | nowrap - 줄개행 x
+        - flex-grow: 공백을 비율별로 균등 배분 - 자식 요소
+
+
+
+
+
+
+실습방법 안내
+웹브라우저
+  - 자바스크립트를 해석해주는 엔진
+  - 크롬
+  - shift + 엔터 : 줄개행
+  - 엔터 : 코드 실행
+
+자바스크립트 기초문법
+1. 변수
+  변수 - 변하는 수(데이터)
+         - 바구니(공간 - 메모리)
+         - 공간의 이름(메모리 이름)
+
+  var 변수명 = 값;
+
+  - 변수 명명 규칙
+	- 의미있는 단어
+	- 숫자, 알파벳, 특수문자(_$)
+	- 숫자는 변수명 앞에 올 수 x
+	- 예약어(이미 문법적으로 사용하고 있는 단어)는 사용x
+
+    변수명 작성 관례
+	단어와 단어의 시작 첫 글자는 대문자(가장 첫 단어는 소문자)
+	카멜 표기법 예) studentName, numOfStudent
+
+  var 변수명 = 숫자 | 논리값;
+	    = "문자";
+	    = '문자';
+  typeof -> 자료형 체크 연산자
+
+  논리형 -> true(참), false(거짓)
+	string : 문자형
+	number : 숫자형
+	boolean : 논리형
+
+
+2. 자료형
+원시타입 자료형 - 숫자, 문자, 논리형, - 재료가 되는 자료
+  숫자형 자료형(number)
+    - 정수(예-10, 20, ..., -10, 0)
+    - 실수(예-0.34, ...)
+
+  문자형 자료형(string)
+    - "", ' ' -> 문자
+
+  논리형 자료형(boolean) - 참, 거짓
+    true, false
+
+    - 자바스크립트에서는 특정 값으로 false를 인식
+      0, ' ', null, undefined -> false로 인식
+    - false로 인식하는 값을 제외한 모든 문자 -> true
+
+  undefined : 값이 지정되지 않은 자료형
+
+  null : 값이 비어 있음
+
+객체 자료형(참조 자료형) 
+
+  computer -> 계산기
+
+3. 연산자
+  10 + 20
+  연산자 : 연산에 사용되는 기호(+, -, /, ...)
+  항 : 연산에 사용되는 값
+
+     - 단항 연산, 이항 연산, 삼항 연산
+
+  1) 산술 연산자
+    +, -, *, /, %
+
+    10 + 3 * 6
+
+    우선순위 
+         *, / > + -
+        ( ... ) -> 우선순위 강제 적용
+        (10 + 3) * 6
+
+	수치: +계산
+	문자: + 문자열 결합
+
+     % - 나머지 연산자
+
+  1, 3, 5, 7, 9, ... 홀수  2n + 1
+  2, 4, 6, 8, 10, ... 짝수
+
+
+  2) 대입 연산자(=)
+    - 오른쪽에 있는 값을 왼쪽 변수에 저장
+    - 연산이 가장 마지막에 발생
+    - 우선순위가 가장 낮은 연산자
+
+
+  3) 증가감소 연산자(단항 연산)
+    ++(1씩 증가)
+       num++; // num = num + 1; 
+	대입(1) -> 연산(2)
+       ++num; // num = num + 1; (1이 바로 적용)
+	연산(1) -> 대입(2)
+    --(1씩 감소)
+       num--; // num = num - 1;
+       --num; // num = num - 1;
+
+
+  4) 비교(관계) 연산자
+   >, <, >=, <=, ==(같다), !=(다르다)
+
+  연산결과 - 논리값(참, 거짓, true, false)
+
+  === : 주소값 비교
+  !== : 주소값 비교(다를때)
+
+
+  5) 논리 연산자
+    
+  AND - 교집합
+    둘다 참이어야 참인 조건
+    - &&
+
+  OR - 합집합
+    한쪽이 참이면 참인 조건
+    - | |
+
+  단락 회로 평가
+  연산이 끝나면 최종 값을 반환
+
+  기본값 ||
+
+  NOT - 부정 (!)
+    참 -> 거짓
+    거짓 -> 참
+
+논리 연산자의 우선순위가 비교 연산자보다 낮다.
+
+false - 값으로 false가 되는 조건
+	0, '', undefined, null
+
+true - false가 되지 않는 모든 값
+
+
+  6) 복합 대입 연산자(단항 연산)
+	(=)
+     산술 연산 + 대입
+     num = num + 2; -> num += 2;
+     num = num - 2; -> num -= 2;
+     num = num * 2; -> num *= 2;
+
+     num += 1; // num++;
+
+
+
+=====================================================================================
+
+2023.02.07
+
+5일차
+
+
+  7) 삼항 조건 연산자
+
+  (조건식) ?  참일때 : 거짓일때;
+ - 참, 거짓을 체크하는 연산식
+
+  우선순위
+
+  비교, 논리
+
+  ( ) > 단항 연산 ... > 비교 > 논리 > ... > 대입
+
+
+조건문 
+- 참, 거짓 -> 참일때 실행, 거짓일때 실행
+
+if문
+  if ( 조건식 - 참, 거짓 연산자) {
+      // 참일때 실행되는 영역
+  }
+
+
+if else문
+  if ( 조건식 - 참, 거짓 연산자) {
+      // 참일때 실행되는 영역
+  } else {
+      // 거짓일때 실행되는 영역
+  }
+
+
+다중 if else문
+  if ( 조건식1) {
+      // 조건식 1이 참일때 실행되는 코드
+  } else if ( 조건식2) {
+      // 조건식1이 거짓 + 조건식2가 참일때 실행되는 코드
+  } else if ( 조건식3) {
+      // 조건식1, 조건식2이 거짓 + 조건식3이 참일때 실행되는 코드
+  } ... else {
+      // 앞의 조건식이 모두 거짓일때 실행되는 코드
+  }
+
+  조건식 : 비교, 논리 연산자가 주로 사용됨
+
+  ( ... ) : 참, 거짓 체크하는 조건식
+  { ... } : 실행되는 코드
+  값을 출력 consloe
+		- log(변수, 값)
+		- dir(객체)
+ 
+
+4. 제어문
+
+5. 선택문
+값의 일치여부를 체크하는 조건식을 대체
+
+  switch(키워드) {
+    case "값1" :
+	값이 일치하면 실행되는 코드 ...
+    case "값2" :
+
+	break; -> 실행 중단
+
+    ...
+    default:
+	// 모든 값에 일치하지 않을때 실행되는 코드
+  }
+
+  switch, case, break, default
+
+
+1등 - 금메달
+2등 - 은메달
+3등 - 동메달
+
+switch(rank){
+    case 1:
+        console.log("금메달");
+        break;
+    case 2:
+        console.log("은메달");
+        break;
+    case 3:
+        console.log("동메달");
+        break;
+    default:
+        console.log("노 메달");
+}
+
+
+6. 반복문
+
+1) while(조건식) {
+      // 조건식이 참일때 반복 실해되는 영역
+  } 
+
+while(num <= 100){
+    total += num; // total = total + num;
+    num++; //num = num + 1;
+}
+
+
+2) do ~ while
+  do{
+    // 조건식이 참일때 반복 실행되는 영역
+} while(조건식);
+
+
+특정 횟수만큼 반복
+
+for( 초기화식; 조건식; 증감식){
+
+}
+
+순서 -> index (0부터 시작하는 순서...)
+i
+
+i,j,k,l,m,...
+
+break; -> 반복 중단
+
+var total = 0;
+for(var i=1; i<=100; i++){
+    total += i;
+    if(i == 50){
+        break;  // 반복중단
+    }
+}
+
+
+홀수 -> 2로 나눈 나머지가 1%
+var total = 0;
+for(var i=1; i<=100; i++){
+    if(i % 2 == 1){ // 홀수
+        total += i;
+    }
+}
+
+
+
+continue -> 현재 반복을 중단, 새로 반복 시작 : 건너 뛰기
+
+짝수일때
+
+var total = 0;
+for(var i=1; i<=100; i++){
+    if(i % 2 == 0){ // 짝수
+        continue;
+    }
+    total += i;
+}
+
+
+
+중첩 반복문 : 반복문 안에 반복문
+
+for -> for
+for -> while
+while -> while
+while -> for
+
+구구단 예제_(2단 ~ 9단)
+for(var i=2; i<=9; i++){
+    console.log("=====" + i + "단=====");
+    for(var j=1; j<=9; j++){
+        console.log(i+" x "+j+" = ", i*j);
+    }
+}
+
+
+
+ECMAScript 6 부터 추가된 데이터 타입
+1. 심벌 - 새로운 자료형
+Symbol( ): 유일값
+
+forEach
+
+
+
+
+2. 템플릿 리터럴
+` ` -> 자연스러운 문장
+   -> 보간표현법(placeholder) - 변수값을 치환
+      ${변수명}
+
+
+메타 문자 - 동작 통제 문자
+  \n -> new line -> 줄개행
+  \r -> carriage return -> 첫 칸으로 이동
+  \t -> 탭키 1개
+  \b -> 백스페이스 키
+
+  \r\n -> 엔터키
+
+
+자바스크립트 버전
+ECMAScript3
+ECMAScript5
+ECMAScript6(2015)
+ECMAScript6+(ESNext)
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+객체 리터럴
+객체(Object - 사물, 대상)?
+
+자동차
+  속성
+  - 바퀴
+  - 엔진
+  - 연등 ...
+
+  행위
+     움직인다
+
+운전자
+
+자동차, 운전자 -> 상호작용
+
+변수 : 함수객체의 주소;
+
+
+
+1. 객체 리터럴로 객체 생성하기
+{
+   속성명 : 속성값;
+   속성명 : 속성값,
+   ...
+ }
+
+  .(마침표)
+
+  변수.속성명;
+  변수['속성명'];
+
+var person = {
+    name : "이름",
+    age : 40,
+};
+undefined
+person;
+{name: '이름', age: 40}
+person.name
+'이름'
+person.age;
+40
+
+
+
+2. 프로퍼티 추가와 삭제
+객체 안에 없는 속성에 값을 대입 -> 추가
+객체 안에 있는 속성에 값을 대입 -> 수정
+
+delete 변수.속성명; -> 삭제
+
+
+
+3. in 연산자로 프로퍼티가 있는지 확인하기
+in -> 속성명이 존재하는지 체크하는 연산자
+
+  for(속성명 in 객체 참조 변수){
+      
+  }
+
+
+
+4. 객체는 참조 타입
+참조 : 참고한다.
+
+모든 객체를 참고하는 변수 -> 주소를 가지고 접근
+
+참조 변수(주소)
+
+함수 - 기능을 담담
+
+
+함수
+
+1. 함수 선언문으로 함수 정의하기
+  function 함수명 (매개변수 ...) {
+      // 기능을 수행하는 코드
+
+      return 반환값 -> 빠져나오는 기능(함수 종료)
+  }
+
+2x + 1 = y
+- 매개변수가 없거나 1개 이상...
+
+
+2. 함수 호출
+
+함수명(값, ... );
+
+
+
+3. 함수 선언문의 끌어올림
+
+
+4. 값으로서 함수
+함수 객체
+console.dir(함수명);
+
+함수명(변수명) = 함수 객체;
+
+window
+
+함수 -> 객체 -> 값
+
+속성값 : 원시타입, 객체(모든 값)
+
+일급 객체
+
+
+
+=======================================================
+
+2023.02.08
+
+6일차
+
+
+
+1. 변수의 유효범위
+전역변수
+지역변수(지역 -> 함수 내)
+  상대적인 개념
+  함수 객체 -> 값
+    함수 객체 -> 함수 객체 정의
+    매개 변수
+    반환값
+
+var num1 = 10;  // 전역변수
+function add(){
+    var num1 = 30;  // 동일한 변수가 있을 시 지역변수를 우선순위로 한다.
+    var num2 = 20;  // 지역변수(함수 내)
+
+    return num1 + num2;
+}
+
+
+
+
+Global Execution Context    - Global EC
+  변수 : window 속성 (변수, 참조 변수) num1
+  외부 변수 참조 : null
+
+  this 바인딩 : window
+
+
+outer( ); -> 실행위한 객체(Execution Context - EC)
+  outer EC{
+    변수 : 원시타입 변수 num2
+          : 참조 변수
+
+     외부 변수 참조 : Global EC 변수 참조
+
+     this 바인딩 : 함수를 호출한 객체
+  }
+
+inner( ) -> 실행위한 객체(Executon Context -EC)
+  inner EC {
+    변수 : 원시타입 변수  num3
+          : 참조 변수
+    외부 변수 참조: outer EC 변수 참조
+
+    this 바인딩: 함수를 호출한 객체
+
+
+var num1 = 10;
+function outer( ){
+    var num2 = 20;
+    
+    return function inner( ){
+        var num3 = 30;
+
+        return num1 + num2 + num3;
+    };
+}
+
+
+EC 스택 메모리에서 실행 -> 제거
+
+
+
+
+
+
+2. 블록 유효 범위 : let과 const
+
+var 변수의 단점
+ var 변수 : 변수의 유효범위 함수 단위
+	: 변수의 변경이 매우 유연 -> 즉 변경되면 안되는 중요한 변수가 바뀌게 되어 오류가 발생할 수 있다.
+
+let, const -> { ... } 지역 범위, 호이스팅 -> 코드 위치
+
+let : 변수 선언자 - 변수의 값을 변경 o
+const : 상수 선언자 - 변수의 값 변경 x
+
+const를 기본 변수 선언자
+변경이 필요한 경우만 let을 사용
+
+
+
+
+3. 함수 리터럴로 함수 정의하기
+변수 = 함수객체;
+
+
+
+4. 객체의 메서드
+함구 객체가 값으로써 객체에 있으면 메서드라는 용어
+
+
+
+5. 즉시 실행 함수
+
+  (function 함수명(...){ 
+    
+  })( );
+
+
+- 매개변수o
+- 빈환값 o
+
+
+
+--------------------------------------------------------------------
+
+1. 생성자
+함수 객체 == 일급 객체
+  1. 매개변수
+  2. 반환값
+  3. 객체 -> 다른 객체 생성
+
+상속 
+[[Prototype]] - 프로토타입 체인
+__proto__
+
+Object.setPrototypeOf
+
+instanceof 
+
+프로토타입 체인 연결 방식의 상속
+유동적인 상속
+
+Function 생성자 객체 -> function 
+
+const p1 = new Person();
+1) 생성자 함수 객체의 프로토타입 상속
+p1.__proto__ = Person.prototype;
+
+2) Person 생성자 함수를 this -> p1 변경해서 호출
+
+class 생성자 함수명{
+    constructor(){
+	초기화
+    }
+}
+
+
+함수 객체 지역 변수
+  this
+  arguments - 인자(매개변수에 투입되는 변수)
+
+...변수 -> 가변 매개변수
+
+
+
+2. 프로토타입
+
+
+
+====================================================================
+
+
+2023.02.09
+
+7일차
+
+
+
+3. 내장객체
+ECMAScript Core 객체
+  생성자 객체
+    Object( )
+    String
+	- 래퍼(Wrapper) 생성자 객채
+    Number
+	- 래퍼(Wrapper) 생성자 객채
+    Boolean
+    Array
+    Date
+    Function
+    ...
+    Error
+
+  일반 객체
+    Math
+	abs(): 절대값
+	sign() : 부호(음수 --1, 0, 양수 1)
+	pow() :
+	random() : 0~1미만 실수
+
+	wound() : 반올림
+	floor() : 버림
+	ceil() : 올림
+
+    JSON	
+	- JavaScript Object Notation : 자바스크립트 객체 표기법
+	- stringify
+	  자바스크립트 객체 -> 문자열 형식 JSON
+	- parse
+	  문자역 형식의 JSON -> 자바스크립트 객체
+
+
+호스트 객체 - 사용환경에 따른 객체
+(브라우저 객체)
+
+
+
+4. 배열
+Array 생성자 함수 객체
+- 데이터군을 다룰수 있는 객체
+
+new Array()
+
+매개변수1 - 숫자 : 빈 공간을 숫자만큼 생성
+	(숫자, 양수, 1이상의 수)
+매개변수가 2개 이상 : 데이터 추가
+
+ [ ] == new Array()
+
+{
+  0 : "apple",
+  1 : "mango",
+  2 : "orange",
+  length : 3
+}
+ 
++ 프로토타입 체인 : Array.prototype
+
+배열객체, 숫자 속성 [순서번호]
+
+객체 값 : 원시타입(숫자, 문자, .. nudefined)
+
+추가
+  끝에
+    push()
+
+  앞에
+    unshift()
+
+  중간 추가
+    splice
+
+제거
+  끝에
+    pop() -> 꺼내서 반환
+  
+  앞에
+    shift() -> 꺼내서 반환
+
+  중간 제거
+    splice
+
+
+forEach
+map
+
+includes - 참,거짓(true, false)
+
+찾는 요소의 위치, 찾지 못마녀 -1 값을 반환
+indexOf - 왼쪽에서 오른쪽으로 찾는다
+lastindexOf - 오른쪽에서 왼쪽으로 찾는다
+
+concat - 배열간 결합 
+Array.prototype.join -> 배열을 결합 -> 문자열 ' '
+
+String.prototype.split ->  문자열을 잘라서 -> 배열 []
+
+
+
+------------------------------------------------------------------
+
+
+*단축키 : ctrl + shift + U  - 시크릿 모드 크롬 호출
+
+웹브라우저의 객체
+1. 클라이언트 측 자바스크립트
+2. 웹 브라우저에서 자바스크립트 실행순서
+3. 웹브라우저 객체
+
+hash -> 검색 키워드
+  #키워드
+    -> id="키워드"
+window
+  location - 웹 브라우저의 주소와 관련되어 있는 속성 + 기능
+    페이지 이동
+    - assign - 방문기록 남기는 이동
+      href="주소"
+
+    - replace - 방문기록이 없은 이동
+
+    새로 고침
+    - reload() 
+
+  history - 방문기록 관련되어 있는 속성 + 기능
+    length : 방문기록 횟수
+    scrollRestoration : auto(기본값): 이전 페이지 이동시 스크롤 위치를 기억
+                        manual - 이전 페이지 스크롤 위치 기억 X
+
+    back - 방문기록 바로 직전 뒤로가기
+    forward() - 방문기록 바로 직전 앞으로 이동(앞으로 )
+    go(숫자) - 예) 2 -> 2단계 앞으로 이동
+                  -2 -> -2단계 뒤로 이동
+
+  screen
+    landscape - 가로모드(pc 모드)
+    portrait - 세로모드(모바일)
+
+  navigator
+    - 브라우저 운영 환경 정보
+
+
+
+<scrtipt>
+자바스크립트 코드
+</scrtipt>
+
+<scrtipt src="파일명.js"></scrtipt>
+
+4. Document 객체 ★★★
+  document - 문서
+    1) 태그명으로 요소(HTML 태그) 선택
+      document.getElementsByTagName("태그명");
+
+    2) 클래스명으로 요소 선택
+      document.getElementsByClassName("클래스명");
+
+    3) 아이디명으로 요소 선택
+      document.getElementById("아이디명");
+
+    4) name 속성명으로 요소 선택
+      document.getElementByName("속성명");
+
+    5) css 선택자로 요소 선택
+      document.querySelector("css 선택자"); : 요소 중 첫번째 1개만 선택
+      document.querySelectorAll("css 선택자"); : 모든 요소를 선택
+
+    6) 상대적 위치로 선택
+       parentElement : 부모 요소
+       children : 자식요소(여러개)
+       firstElementChild : 첫번째 자식
+       lastElementChild : 마지막 자식
+       previousElementSibling : 이전 형제 요소
+       nextElementSibling : 다음 형제 요소
+
+
+
+서버(HTML 텍스트) 응답  ->
+브라우저가 Documtnt 객체로 변환 + DOM Tree 구조 생성 ->
+
+브라우저가 DOMContentLoaded 이벤트 발생 시킴
+브라우저에서 이미지, 외부 CSS, JS, 비디오 등등 로드 완료 ->
+브라우저가 load 이벤트 발생
+
+
+
+
+
+=====================================================================
+
+2023.02.10
+
+8일차
+
+
+DOM(Document Object Model)
+
+<script
+    - async 
+    - defer -> DOMContentLoaded 이벤트 이후 실행
+
+  요소 생성
+    태그
+    document
+      createElement("태그명"); -> 메모리에 document 객체 생성
+
+    텍스트 
+      createTextNode("텍스트"); -> 메모리에 text document 객체 생성
+
+
+  요소 추가
+    document
+      부모요소.appendChild(자식요소); -> 자식요소가 부모의 가장 끝 자식으로 등록
+      부모요소.insertBeform("추가할 요소", "바로 뒤 요소");
+      부모요소.removeChild(자식요소); -> 자식요소 제거
+
+  속성 추가, 조회, 삭제
+    document
+      .setAttribute("속성명", "속성값");
+      .getAttribute("속성명");
+      .removeAttribute("속성명");
+
+
+  많이 사용하고 기능과 관련있는 속성 -> document 객체의 속성명으로 바로 접근
+   - id, className(class), src, type, name, href, targer, value, ...
+
+
+   정보성 속성
+   data를 다루는 속성 - document.dataset
+   	data-속성명
+      
+
+    클래스를 다루는 객체 - document.classList
+	클래스명 조회
+	  add : 클래스 추가
+ 	  remove : 클래스 제거
+	  contains : 클래스 포함여부 체크
+	  toggle : 클래스가 있으면 제거, 없으면 추가
+
+     window
+	console
+	    log, dir, error, trace, time, timeEnd
+
+	alert("메세지") - 메세지 팝업
+	confirm("메세지") - 확인, 취소 의사 팝업(취소 - false, 확인 - true)
+	prompt("메세지") - 입력 팝업
+
+	- 지연 반복 실행
+	setInterval(function() {
+	  // 실행될 코드
+	}, 지연시간);
+	  지연시간 1000 -> 1초
+
+	- 지연 실행
+	setTimeout(function() {
+	  // 실행될 코드
+	}, 지연시간);
+	  지연시간 1000 -> 1초
+
+
+ - 스크롤바를 제외한 너비, 높이
+  innerWidth
+  innerHeight
+
+  - 스크롤바를 포함한 너비와 높이
+  outerWidth
+  outerHeight
+
+  - 스크롤한 위치
+  pageXOffset : 가로 방향 스크롤 한 정도
+  pageYOffset : 세로 방향 스크롤 한 정도
+
+
+
+  document
+    head
+    body
+    form의 name 속성
+
+  innerHTML : 태그 안쪽에 있는 HTML 문자열 반환
+	     : 값을 지정하면 HTML 변경
+
+  innerText : 태그 안쪽에 있는 TEXT 문자열 반환
+	   : 값을 지정하면 TEXT 변경
+
+
+
+
+
+
+이벤트 처리
+1. 이벤트 처리기
+    document 객체
+      on이벤트명 속성 = 이벤트 핸들러
+
+    focus : input -> 커서가 깜빡
+    blur : 커서가 깜빡-> 사라짐
+    click : 클릭(마우스 클릭, 터치)
+    dblclick : 더블 클릭
+    change : 변경시, 파일을 선택, select - 요소 선택
+
+
+   키 이벤트
+   - 키를 눌렀을때 발생
+     keypress
+     keydown
+
+    - 키를 눌렀다 뗄떼 발생
+     keyup
+
+
+    마우스 이벤트
+	mousedown - 마우스 키를 눌렀을 때
+	mouseup - 마우스 키를 눌렀다 뗄때
+
+	----이벤트가 적용된 요소만 적용----
+	mouseenter - 마우스가 요소 위로 올라왔을 때
+	mouseleave - 마우스가 요소에서 빠져 나갔을 때
+
+	----이벤트가 적용 된 요소와 + 하위요소----
+	mouseover - 마우스가 요소 위로 올라왔을 때
+	mouseout - 마우스가 요소에서 빠져 나갔을 때
+
+	mousewheel : 마우스 휠 버튼을 조작
+
+
+    기타
+       resize : 창의 너비, 높이가 변경 되었을때
+       scroll : 창에서 스크롤이 될때
+
+
+2. 이벤트 리스너
+  document
+    addEventListener("이벤트명","이벤트 핸들러 함수",useCapture)
+
+
+3. 이벤트 객체
+  event
+    이벤트가 발생한 요소
+    target
+    currentTarget
+
+4. 이벤트 전파
+이벤트 전파
+useCapture - false(기본값) :  버블링 단계에서 이벤트가 전파
+	   - true : 캡쳐링 단계에서 이벤트가 전파
+
+
+
+5. 이벤트 리스너 안의 this
+  event
+    target : 실제 이벤트가 발생한 요소
+    currentTarget : 이벤트가 바인딩되어 있는 요소
+    (== this)
+
+    stopPropagation( ) : 이벤트 전파 방지
+    preventDefault( ) : 기본 기능 차단
+
+
+
+6. 클릭 이벤트
+7. 마우스 이벤트
+8. 키 이벤트
+
+기타
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

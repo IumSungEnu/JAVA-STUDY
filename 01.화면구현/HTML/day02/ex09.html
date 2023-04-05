@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>연습9</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <style>
+            /* 가상클래스 선택자 */
+            /* 순서로 선택 */
+            /* 반드시 부모 태그가 있어야 적용된다 */
+            /* 
+            li:first-child{ background: orange;}
+            li:last-child{ background: blue;} 
+            */
+            /* 
+            li:nth-child(1), 
+            li:nth-child(3), 
+            li:nth-child(5),
+            li:nth-child(7),
+            li:nth-child(9) {background: orange;}
+             */
+
+            /* 태그의 종류만 가지고 적용 */
+            li:nth-of-type(2n+1){background: orange;}
+            li:first-of-type {background: red;}
+            li:last-of-type {background: blue;}
+        </style>
+        <ul>
+            <li>메뉴1</li>
+            <li>메뉴2</li>
+            <li>메뉴3</li>
+            <li>메뉴4</li>
+            <li>메뉴5</li>
+            <li>메뉴6</li>
+            <li>메뉴7</li>
+            <li>메뉴8</li>
+            <li>메뉴9</li>
+            <li>메뉴10</li>
+            <li>메뉴11</li>
+            <li>메뉴12</li>
+        </ul>
+    </body>
+</html>

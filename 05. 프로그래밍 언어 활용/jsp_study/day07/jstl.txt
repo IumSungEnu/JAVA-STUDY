@@ -1,0 +1,115 @@
+JSTL
+
+코어(core) 라이브러리
+<%@ taglib
+    prefix="c"
+    uri="http://java.sun.com/jsp/jstl/core" %>
+
+1. <c:set>
+  - EL식 변수로 추가
+  - scope
+    - page : pageContext 속성(기본값)
+    - request
+    - session
+    - application
+
+
+2. <c:remove>
+  - 속성값에서 제거
+  -> 적용범위를 설정하지 않으면 설정된 속성명의 모든 속성의 값을 제거
+  - scope로 범위를 설정하면 특정 범위의 속성만 제거가 가능하다.
+  - 범위를 지정하지 않으면 모든 정보가 제거되어 보이지 않게 된다.
+
+
+3. <c:if>
+  - 조건문
+  - test="${조건식}"
+
+
+
+5. 
+다중조건문
+<c:choose>
+   <c:when>
+   <c:otherwise>
+
+
+4. <c:forEach>
+  - 반복문
+  - begin : 시작번호
+  - end : 종료번호
+  - step : 증감단위(기본값1)
+  - var : begin, end -> 현재 수치
+  - items : EL 식 변수
+	- 배열
+	- 컬렉션(Collection - List, Set)
+	- Iterator
+	- Enumeration
+          + var : 반복하는 각각의 요소
+
+  - varStatus
+    : 반복에 대한 상태값
+      index : 0부터 시작하는 반복 횟수
+      count : 1부터 시작하는 반복 횟수
+      first : 첫번째 반복인지 체크
+      last : 마지막 반복인지 체크
+      current : 현재 반복되는 요소
+
+
+6. <c:redirect>
+  HttpServletResponse
+    response
+      .sendRedirect(주소)
+    응답 헤더 
+      Location : 주소
+
+      url : 주소
+
+
+7. <c:out ...>
+  출력 -> HTML escape : HTML 태그를 문자열로 인식
+  value
+  escapeXml : 기본값 true : HTML 태그를 escape 처리(문자열 인식)
+	    : false -> HTML 태그를 인식
+
+
+
+8. <c:url ...>
+  - 컨텍스트 패스
+  - var : URL 출력 결과 EL식 변수에 담아준다.
+
+
+9. <c:import>
+
+  - <jsp:include page="페이지" /> : 버퍼 추가
+  - 차이점
+    - url="주소"
+    - 액션 태그인 include는 현재 서버의 자원만 가능
+      jsp, 서블릿, html, 텍스트
+
+    - import는 현재 서버 자원 + 외부 서버 자원
+
+    var : 출력 결과물을 EL식 변수에 담아준다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

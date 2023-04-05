@@ -1,0 +1,757 @@
+
+2023.02.17
+
+13일차
+
+
+
+
+SELECT문의 기본 형식
+
+0. DESCRIBE 테이블명;
+    DESC 테이블명;
+
+    - 테이블 명세
+
+1. 데이터를 조회하는 3가지 방법
+- 조회
+ 
+- 셀렉션 : 조회된 행
+- 프로젝션 : 조회된 컬럼
+- 조인 : 테이블간 연결
+
+SELECT 컬럼명,...
+
+
+ALL - 기본값 - 모든 데이터(중복 포함)
+DISTINCT - 중복없는 값(중복을 제외한 데이터값)
+
+SELECT [ALL | DISTINCT] 컬럼명... FROM 테이블
+
+
+
+2. 별칭을 지정하는 방법
+    AS(Alias) - 생략 가능
+
+
+3. 원하는 순서로 출력 데이터를 정렬하는 ORDER BY
+정렬
+컬럼별 정렬
+ORDER BY 컬럼명 [ASC-기본값 | DESC], 컬럼명 [ASC | DESC], ...
+                        1차                  2차
+
+ASC - 오름차순
+DESC - 내림차순
+
+
+
+더 정확하고 다양하게 결과를 출력하는 WHERE절과 연산자
+
+1. 문법
+
+SELECT 컬럼명, .... FROM 테이블명 WHERE 조건식;
+
+
+연산자
+    산술연산자
+    (+,-,/,*,... MOD - 나머지 연산자)
+
+
+    비교연산자
+    <, >, <=, >=(같다)
+    다르다
+    !=
+    <>
+    ^=
+
+    NULL은 연산 X
+    숫자 + NULL -> NULL
+    
+    NVL(컬럼명, NULL 일때 대체값)
+
+    비교 연산X, NULL 값 조회 연산X
+    (=조회 불가)
+
+    IS NULL -> 현재 컬럼이 NULL 인지 체크
+
+논리연산자
+
+    AND 연산
+        비교하는 항이 모두 참일때 참인 조건
+
+
+    OR 연산
+        비교하는 항이 둘중 하나만 참이어도 참인 조건
+        JOB - SALESMAN, CLERK
+
+        SAL가 2500불 이상(SAL >= 2500 ), 3500 이하(SAL <=3500);
+
+        (...) : 우선순위가 가장 높으 ㄴ연산
+
+    NOT 연산
+        참인 거짓 -> 거짓인 조건
+        거짓말 조건 -> 참인 조건
+
+        SAL가 2500 미만
+
+        NULL이 아닌 조건
+        IS NOT NULL 
+
+    
+
+2. 여러개 조건식을 사용하는 AND, OR 연산자
+
+    IN 연산자 : 교집합 ★★★    
+        컴럼 IN (항목1, 항목2, 항목3, ...); -> 컬럼이 항목1,2,3인 값이 참인 조건
+
+    NOT IN : 차집합
+
+    BETWEEN A AND B
+        A이상 B이하
+
+    자료형 -> 자동 형변환(안되는 형식도 있다)
+     
+        TO_DATE
+            - 문자열 날짜, 형식에 따라서 날자 자료형으로 변환
+            - Y - 년도(YY, YYYY) - 81 - YY -> 2081(가까운 년도)
+            - R - 년도(RR, RRRR) - 81 - RR -> 1981(현재 년도 지정)
+            - MM - 월
+            - DD - 일
+
+            - HH, HH12, HH24 - 시
+            - MI - 분
+            - SS - 초
+
+        TO_NUMBER : 숫자
+        TO_CHAR 
+
+    LIKE 연산자
+        패턴으로 검색
+
+        컬럼명 LIKE 패턴;
+            - 패턴과 일치하는 값
+            - %(와일드카드)
+            - '패턴%' -> 패턴으로 시작하는 컬럼 값    - 가장 많이 사용
+                예) SELECT * FROM EMP WHERE JOB LIKE 'S%';          
+                    -S로 시작되는 모든 값 출력
+            - '%패턴' -> 패턴으로 끝나는 컬럼 값
+            - '%패턴%' -> 패턴이 중간에 포함된 컬럼 값
+            - _(와일드카드) -> 문자 1개
+            - '_L%' -> L 앞에 1글자가 있고 시작하는 컬럼 값
+            - '_%' -> 기능 O, 문자로 사용하려면 ESCAPE -> 
+
+
+3. 연산자 종류와 활용 방법
+
+    
+
+
+4. 집합 연산자
+    - 중복X
+
+    합집합
+    UNION
+    UNION ALL - 중복 가능
+
+    A - 1,2,3,4,5
+    B - 3,4,5,6,7
+
+    A와 B의 합집합 - {1,2,3,4,5,6,7}
+
+    SELECT * FROM EMP WHERE DEPTNO=10
+    UNION 
+    SELECT * FROM EMP WHERE DEPTNO=20;
+
+
+    교집합
+    INTERSECT, IN
+
+    차입합
+    MINUS, NOT IN
+
+    예) SELECT * FROM EMP WHERE SAL < 2500 AND EMPNO NOT IN
+        (SELECT EMPNO FROM EMP WHERE SAL >= 2000);
+
+
+
+
+
+데이터 처리와 가공을 위한 오라클 함수
+
+내장함수
+사용자 정의 함수(PL / SQL)
+
+1. 내장 함수의 종류
+- 단일행 함수 (하나의 값)
+    - 값이 단일값
+    - 스칼라 값
+
+문자
+    UPPER : 소문자 -> 대문자
+    LOWER : 대문자 -> 소문자
+    INITCAP : 첫글자만 대문자
+
+    예) 
+    SELECT UPPER(ENAME) FROM EMP; -대문자
+
+    SELECT LOWER(ENAME) FROM EMP; -소문자
+     -> SELECT * FROM EMP WHERE LOWER(ENAME)=LOWER('scott'); 
+
+    LENGTH : 문자열 길이
+    LENGTHB : 바이트 길이
+
+    ORACLE, MSSQL
+
+    MYSQL
+        LENGTH : 바이트 길이
+        CHAR_LENGTH : 문자 길이
+
+
+    SUBSTR : 문자열 추출
+    SUBSTR(문자열, 시작위치) : 시작위치부터 문자열 추출
+    SUBSTR(문자열, 시작위치, 추출갯수) : 시작위치에서 추출 갯수만큼 추출
+    - 시작위치는 1부터 시작한다.
+
+    SELECT SUBSTR(ENAME, 2, 3) FROM EMP;
+
+    1
+
+        -5    -4    -3    -2    -1(거꾸로)
+    SELECT SUBSTR(ENAME, -5, 1) FROM EMP WHERE ENAME='SCOTT';
+        -> SELECT SUBSTR(ENAME, -LENGTH(ENAME), 1) FROM EMP WHERE ENAME='SCOTT';
+    SCOTT
+    12345
+
+    - : 부호 연산자 (*-1(곱하기-1)과 동일)
+        음수 -> 양수
+        양수 -> 음수
+
+
+    INSTR -> 문자열의 위치(1부터 시작)
+          -> 문자열을 못찾을때는 0을 반환
+
+    SELECT * FROM EMP WHERE INSTR(ENAME, 'L') > 0;  -이름에 L이 포함되어있는
+
+
+
+    자바, 자바스크립트
+    String, Array
+    indexOf
+        - 특정 문자열이 있는지 체크 (0부터 시작)
+        - 1
+
+
+    REPLACE : 치환
+    REPLACE(문자열, 찾는 문자열, 교체될 문자열)
+
+    010-1234-1234
+
+    SELECT REPLACE('010-1234-1234', '-', '') FROM DUAL;
+
+
+    LPAD - LEFT PAD(왼쪽에서 채움)
+        10 -> 0010
+        1 -> 0001
+
+        LPAD(문자열, 자리수, 채울문자)
+        SELECT LPAD('010-1234-', 13, '*') FROM DUAL;
+
+
+    RPAD - RIGHT PAD(오른쪽에서 채움)
+
+        RPAD(문자열, 자치수, 채울 문자)
+        SELECT RPAD('010-1234-', 13, '*') FROM DUAL;
+
+
+    CONCAT : 두개의 문자열 데이터를 하나의 데이터로 연결
+
+    SELECT CONCAT(ENAME, JOB) FROM EMP;
+      -> SELECT CONCAT(CONCAT(ENAME,' : '), ENAME) "부서명 : 직원명" FROM EMP;
+
+
+    || -> 문자열 결합 연산자
+
+    예) '관련' 포함
+    
+    subject LIKE '%관련%' OR content LIKE '%관련%';
+    -> CONCATE(subject, content) LIKE '%관련%';
+    -> subject || content LIKE '%관련%';
+
+숫자
+
+날짜
+
+기타
+
+
+
+
+
+
+
+
+===========================================================
+
+2023.02.20
+
+14일차
+
+데이터 처리와 가공을 위한 오라클 함수
+
+단일행 함수 - 하나의 값을 가지고 처리하는 함수
+(ROUND, CEIL, FLOOT ...)
+
+다중행 함수 - 여러의 값을 가지고 처리하는 함수
+(통계 - AVG, SUM, COUNT ...)
+
+
+
+1. 문자 데이터를 가공하는 문자함수
+- 대소문자 관련
+  UPPER : 소문자 -> 대문자로
+  LOWER : 대문자 -> 소문자로
+  INITCAP : 첫 문자만 대문자로
+
+- 문자의 길이
+  LENGTH - 문자의 갯수
+  LENGTHB - 문자의 바이트수
+
+
+  *MySQL
+    LENGTH - 문자의 바이트 수
+    CHAR_LENGTH - 문자의 갯수
+
+- 문자열의 일부를 추출
+  SUBSTR
+
+  SUBSTR(문자열, 시작위치) -> 시작위치부터 끝까지 추출
+  SUBSTR(문자열, 시작위치, 갯수) -> 시작위치에서 갯수만큼 추출
+
+  시작위치는 1번부터 시작
+
+- 문자열의 위치 조회 - INSTR
+    문자열이 위치 번호를 반환(1부터 시작)
+    (못 찾은 경우는 0을 반환)
+
+예) 자바스크립트 indexOf - 0부터 위치 번호, 못찾은 경우는 -1
+
+  LIKE를 대신해서 사용도 가능
+
+
+- 문자열 치환 - REPLACE (검색할때 많이 사용)
+
+010-0000-0000 -> 
+
+MOBLILE LIKE REPLACE('010-1111-1111', '-','')
+
+- 빈공간을 채우는 함수 - LPAD, RPAD
+LPAD - 빈공간을 지정된 문자열로 왼쪽 채움
+RPAD - 빈공간을 지정된 문자열로 오른쪽 채움
+
+1 -> 00001
+10 -> 00010
+
+
+- 문자열 결합 - CONCAT
+ ||
+
+- 공백 제거 함수 : TRIM, LTRIM, RTRIM
+
+TRIM([삭제 옵션][삭제할 문자 FROM] 문자열)
+
+삭제옵션 - LEADING- : 왼쪽
+        - TRAILING- : 오른쪽
+        - BOTH : 양쪽
+
+LTRIM(문자열, [삭제할 문자]); - 왼쪽 여백 또는 왼쪽 삭제 문자 처리
+RTRIM(문자열, [삭제할 문자]); - 오른쪽 여백 또는 오른쪽 삭제 문자 처리
+
+
+
+
+
+
+2. 숫자 데이터를 연산하고 수치를 조정하는 숫자 함수
+- 반올림 - ROUND(숫자, [반올림 위치 - 선택])
+- 올림 - CEIL
+- 버림 - FLOOR
+- 절사 - TRUNC(숫자, [버림 위치])
+- 나머지 - MOD
+
+
+
+
+
+3. 날짜 데이터를 다루는 날짜 함수
+- 연산자
+    날짜데이터 + 숫자(일) -> 날짜데이터에서 숫자 일수 만큼 더한 날짜
+    날짜데이터 - 숫자(일) -> 날짜데이터에서 숫자 일수 만큼 뺀 날짜
+
+    날짜데이터 - 날짜데이터 -> 날짜 간 일수
+    날짜데이터 + 날짜데이터 -> 연산 불가
+
+
+- ADD_MONTHS
+    ADD_MONTHS(날짜, 더하거나 차감할 달수);
+
+- MONTHS_BETWEEN : 두 날짜간의 개월 수
+
+- NEXT_DAT : 다음 요일의 날짜
+    NEXT_DAT(날짜, '요일');
+
+- LAST_DAT : 날짜가 소속되어 있는 월의 마지막 일자(현재월의 마지막 일)
+    LAST_DAT(날짜);
+
+- ROUND, TRUNC
+Y, R, YYYY/YY, RRRR/RR
+YY -> 현재 년도 기준 89 -> 2089
+RR -> 가장 가까운 년도 기준 89 -> 1989
+
+MM, RM :월
+DD : 일
+HH24 : 24시간 기준 시
+HH,HH12 : 12시간 기준 시
+MI : 분
+SS : 초
+W : 1~5 주 번호
+
+
+
+
+참고) MySQL
+    DATE_ADD(날짜, INTERVAL 수치 DAY | MONTH)
+
+
+========================================================================
+
+2023.02.21
+
+15일차
+
+사용자 계정 추가 (SYSTEM 계정, CREATE USER 적절한 권한 가진 사용자)
+1. 데이터베이스
+
+2. CONNECT, RESOURCE
+
+CREATE SEQUENCE 시퀀스명;   // 1부터 시작, 1씩 증가
+    -> 숫자
+
+    - 영역(도메인) 무결성 제약조건
+    (자료형 - NUMBER)
+
+CREATE SEQUENCE 시퀀스명
+    INCREMENT BY 수치
+    START WITH 수치
+    MINVALUE
+    MAXVALUE
+    CYCLE/NOCYCLE - 기본값
+    CACHE 수치 | NOCACHE - CACHE 20
+
+    ->  기본키(PK - UNIQUE + NOT NULL)
+
+
+시퀀스 객체
+CURRVAL - 현재 값(수치 증가X)
+NEXTVAL - 현재 값 -> 수치증가
+        -> 호출 할때마다 수치 증가
+
+
+
+
+
+4. 자료형을 변환하는 행 변환 ★★★
+    TO_NUMBER
+        자동 형변환(문자역 숫자 -> 숫자 변환)
+        TO_NUMBER("문자열", "숫자패턴)
+
+        9 -> 패턴, 남는 자리수는 제거
+        0 -> 패턴, 남는 자리수는 제거X, 0으로 채운다
+
+        999,999
+
+
+    TO_CHAR
+        형식화 문자
+
+        1. 날짜 -> 형식화된 날짜 표기 문자
+            - TO_DATE : 형식화된 날짜 문자 -> 날짜
+
+        YYYY/RRRR, YY/RR -> 연도
+        MM/RM : 월
+        DD : 일
+        HH24, HH12, HH -> 시
+        MI : 분
+        SS : 초
+        AM/PM : 오전/오후
+
+
+        2. 숫자 -> 형식화된 날짜 표기 수치
+            - TO_NUMBER : 형식화된 수치 -> 숫자
+
+        9 -> 남는 자리수는 채우지 않고
+        0 -> 남는 자리수는 채운다.
+
+
+
+
+    TO_DATE
+
+
+5. NULL 처리 함수
+    NULL 연산 연산X
+    NULL + 10 -> NULL
+    NULL > 10 (X)
+
+    NVL(컬럼명, NULL일때 대체되는 값);
+
+    참고) MYSQL IFNULL
+
+    * NULL 인 값을 조회, IS NULL
+
+    NVL2(컬럼명, NULL이 아닐때 반환되는 값, NULL일때 반환되는 값);
+
+
+
+6. 상황에 따라 다른 데이터를 반환하는 DECODE함수와 CASE문
+
+SELECT ENAME, JOB, DECODE(JOB, 
+				'SALESMAN', SAL * 1.1,
+				'MANAGER', SAL * 1.05) AS UPSAL
+		FROM EMP;
+
+
+SELECT ENAME, JOB,
+		DECODE(DEPTNO, 
+				20, '부서번호20',
+				30, '부서번호30',
+				40, '부서번호40') AS DEPTNM
+FROM EMP;
+
+
+SWITCH ~ CASE문
+
+SELECT ENAME, JOB,
+		CASE DEPTNO 
+			WHEN 20 THEN '부서번호20'
+			WHEN 30 THEN '부서번호30'
+			WHEN 40 THEN '부서번호40'
+			ELSE '모르는 부서'
+		END AS DEPTNM
+FROM EMP;
+
+
+
+------------------------------------
+
+다중행 함수와 데이터 그룹화
+    단일행 함수 : 하나의 값 - ROUND, CEIL -> 하나의 값 반올림, 올림
+    다중행 함수 : 여러개의 값 -> 하나의 결과(통계)
+               : SUM - 합계 -> 전체 행에서 SAL
+               : AVG - 평균
+               : COUNT - 행의 갯수
+               : MAX - 최대값
+               : MIN - 최소값
+
+               NULL은 처리 X
+
+               ([ALL | DISTINCT] 컬럼명, *)
+
+
+
+1. 하나의 열에 출력 결과를 담는 다중행 함수
+
+
+2. 결과 값을 원하는 열로 묶어 출력하는 GROUP BY절
+- 공통 값으로 묶어서 그룹 -> 통계 함수(집계 함수)
+- 그룹지어진 값의 갯수 만큼 행이 나온다.
+- 유일한 값
+- 조건식 (WHERE X, HAVING)
+    HAVING 통계 함수(집계 함수) 조건
+
+조건) 부서별 + 직책별 통계, 평균(급여가 2,000불) 이상인 직원 통계
+
+
+
+
+3. 그룹화와 관련된 여러 함수
+ROLLUP,
+CUBE
+GROUPING SETS
+
+LISTAGG
+
+PIVOT -> 열 -> 행
+UNPLVOT -> 행 -> 열
+
+
+---------------------------------------------
+
+여러 테이블을 하나의 테이블처럼 사용하는 조인 ★★★
+조인 - 테이블간의 연결 관계
+     - 연결고리(예 - 외래키 ...)
+
+
+1. 등가 조인(동등조건) 
+    - 컬럼의 동일 값의 조건
+    - 동일값에 해당하는 행만 조회
+    - 내부조인(INNER JOIN)
+
+SELECT E.*, D.DNAME FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO;
+
+CREATE TABLE DEPT_SUB(
+	SUBNO NUMBER(4) PRIMARY KEY,
+	SUBNM VARCHAR2(30),
+	DEPTNO REFERENCES DEPT(DEPTNO)
+);
+
+INSERT INTO DEPT_SUB VALUES (3, '서브3', 30);
+
+SELECT * FROM DEPT_SUB;
+
+SELECT * FROM DEPT D, DEPT_SUB S WHERE D.DEPTNO = S.DEPTNO;
+
+SELECT * FROM EMP E, DEPT D, DEPT_SUB S
+    WHERE E.DEPTNO = D.DEPTNO 
+    AND D.DEPTNO = S.DEPTNO;  
+
+
+
+
+2. 비등가 조인
+    - 연결점X ,비교를 통해서 조인
+    - 값이 동등하지 않아도 암묵적으로 조인
+
+SELECT * FROM EMP E, SALGRADE S
+    WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL;
+-> 공통된 값이 아닌 EMP안 SAL값에 LOSAL과 HISAL이 표함됨
+
+
+
+
+3. 자체 조인
+    - 동일 테이블간에 조인
+    - SELF JOIN
+
+SELECT E.EMPNO, E.ENAME, M.MGR, M.ENAME "MNAME" FROM EMP E, EMP M
+    WHERE E.EMPNO = M.MGR;
+
+SELECT E.EMPNO, E.ENAME, M.MGR, M.ENAME MNAME FROM EMP E, EMP M
+    WHERE E.EMPNO = M.MGR;
+
+
+
+
+4. 외부 조인    - 비표준 문법(오라클에서만 사용가능)
+    왼쪽 외부 조인(LEFT OUTER JOIN)
+    - 주 테이블 + 부가적인 정보
+
+    오른쪽 왼부 조인(RIGHT OUTER JOIN)
+    - 부가적인 정보 + 주 테이블
+
+    
+
+SELECT * FROM EMP E, EMP M
+WHERE E.MGR = M.EMPNO(+);  --직원 테이블 EMP E 나 나오고, 매니저 정보가 있으면 +
+
+SELECT * FROM DEPT D, DEPT_SUB S
+WHERE D.DEPTNO = S.DEPTNO(+);
+
+
+
+===================================================================
+
+2023.02.22
+
+16일차
+
+
+
+SQL-99 표준 문법으로 배우는 조인
+1. NATUAL JOIN
+    -동등 조인
+    -외래키, 기본키 - 동일 컬럼명인 경우 자동 조인
+
+SELECT E.EMPNO, E.ENAME, D.DNAME, D.LOC FROM EMP E NATURAL JOIN DEPT D;
+
+
+
+2. [INNER] JOIN ~ USING     -[INNER] 생략가능
+    JOIN 테이블명  USING(공통 컬럼명)
+
+SELECT E.EMPNO, E.ENAME, D.DNAME, D.LOC FROM EMP E [INNER] JOIN DEPT D USING(DEPTNO);  -JOIN 앞에 INNER 생략가능
+
+
+
+3. [INNER] JOIN ~ ON
+    JOIN 테이블명 ON 테이블 A.컬럼명 = 테이블 B.컬럼명
+
+SELECT * FROM EMP E JOIN DEPT D ON E.DEPTNO = D.DEPTNO;
+
+
+
+4. OUTER JOIN     - 표준 문법 ★★★
+    LEFT [OUTER] JOIN    - 제일 많이 사용하는 OUTER JOIN
+    RIGHT [OUTER] JOIN
+    FULL [OUTER] JOIN
+
+SELECT * FROM DEPT D LEFT OUTER JOIN DEPT_SUB S USING(DEPTNO);
+
+SELECT * FROM DEPT D LEFT OUTER JOIN DEPT_SUB S ON D.DEPTNO = S.DEPTNO;
+
+SELECT * FROM DEPT D FULL OUTER JOIN DEPT_SUB S ON D.DEPTNO = S.DEPTNO;
+
+
+
+
+
+-------------------------------
+
+SQL문 속 또 다른 SQL문, 서브쿼리
+1. 서브쿼리(부속질의)
+    SELECT, INSERT, UPDATE, DELETE 문 안에 SELECT문이 더 있는 형태
+
+    - 스칼라 부속질의
+        스칼라 = 단일값(값이 하나)
+        1) SELECT 컬럼명 위치 부속질의
+        2) WHERE절에서 부속질의가 비교 연산자와 사용될때 (>, =, <)
+
+            참고) 집합 연산자(IN, NOT IN)
+                  여러행 질의 - ANY, SOME, ALL
+
+    - 인라인 뷰
+        - FROM절에 사용되는 SELECT문
+        - 가상 테이블(뷰)
+        - WITH 별칭 AS (SELECT 절)
+            SELECT * FROM 별칭;
+
+    - 상관부속질의
+        - 메인 질의문의 결과, 부속질의문의 항목을 비교
+        - 주 질의의 결과를 부 질의가 조건절에 사용하는 경우
+
+
+
+2. 실행 결과가 하나인 단일행 서브 쿼리
+    스칼라부속질의
+    SELECT ...
+    WHERE절 비교 연산자와
+
+
+
+3. 실행 결과가 여러 개인 다중행 서브 쿼리
+    ANY, SOME -> 어떤 것이라도 참이면 반환되는 조건
+    ALL -> 모든것이 참일때 반환되는 조건식
+
+    MIN, MAX
+
+    EXISTS : 서브쿼리에 결과값이 하나라도 있어야 true, NOT일 경우 false
+
+    다중 항목
+
+4. FROM 절에 사용하는 서브쿼리와 WITH절
+    가상의 테이블(뷰)
+
+
+5. SELECT 절에 사용하는 서브쿼리
+
+
+

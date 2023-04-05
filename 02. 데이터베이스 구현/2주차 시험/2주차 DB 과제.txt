@@ -1,0 +1,86 @@
+
+데이터베이스 정리
+
+
+사용자 추가하기
+CREATE USER 사용자명 IDENTITIFED BY 비밀번호;
+
+수정
+ALTER USER
+
+삭제
+DROP USER
+
+
+사용자 계정 = 스키마 객체
+
+DDL
+
+CREATE TABLE 테이블명(
+	컬럼명 자료형 [제약조건]
+	...
+);
+
+자료형
+문자   - 	CHAR
+	VARCHAR2
+	NVARCHAR2
+	CLOB
+
+숫자   -	NUMBER(수치, 실수) 수치 -> 정수 + 소수점 자리
+
+날짜   - 	DATE
+
+제약조건- NOT NULL
+	UNIQUE - 중복값X, NULL은 허용
+	PRIMARY KEY - UNIQUE + NOT NULL
+	FOREIGN KEY -> REFERENCE 테이블명(컬럼명)
+	CHECK(조건식)
+	DEFAULT 기본값
+
+ALTER TABLE 테이블명
+	ADD 컬럴명 자료형 [제약조건] : 컬럼 추가
+	DROP COLUMN 컬럼명;
+	MODIFY
+	RENAME COLUMN 기존 컬럼명 TO 새로운 컬럼명;
+
+CREATE SEQUENCE 시퀀스명
+  IDENTIFIED BY 수치
+  START WITH
+  MINVALUE
+  MAXVALUE
+  CYCLE | NOCYCLE
+  CACHE | NO CACHE;
+
+DICTIONARY 테이블 - 데이터 사전 뷰
+SELECT * FROM DICTIONARY | DICT
+
+ALL_
+USER_
+
+SELECT * FROM USER_TABLES;
+SELECT * FROM USER_SEQUENCES;
+SELECT * FROM USER_CONSTRAINTS; ...
+
+
+
+권한
+시스템권한
+  ALL PRIVILEGES -> 모든 권한
+  GRANT 시스템 권한 TO 사용자 [ WITH ADMIN OPTION];
+
+  REVOKE 시스템 권한 TO 사용자;
+ 
+
+객체권한
+  ALL_PRIVILEGES -> 모든 권한
+  GRANT 객체 권한(SELECT, UPDATE, INSERT ....) ON 사용자명.테이블명 TO 사용자[WITH GRANT OPTION]
+
+  REVOKE 객체 권한 ON FROM 사용자;
+
+
+CREATE SESSION
+CREATE TABLE
+CREATE VIEW
+CREATE SYNONYM
+CREATE PUBLIC SYNONYM
