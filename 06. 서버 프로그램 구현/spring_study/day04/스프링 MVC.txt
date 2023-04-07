@@ -1,0 +1,30 @@
+
+스프링 MVC 
+
+M(Model)
+V(View)
+C(Controller)
+
+
+1. 스프링 MVC 설정
+spring webmvc 프레임워크 : 도움을 주는 설계 틀
+  - spring-context + spring webmvc
+
++ 자바 웹 기술
+  - servlet-api
+  - servlet.jsp-api
+
+
+2. web.xml
+
+WebMvcConfigurer 인터페이스
+
+
+코드 구현
+1. 컨트롤러 구현
+2. JSP 구현
+3. 실행하기
+
+
+
+스프링 MVC 프레임워크 동작 방식

@@ -1,0 +1,63 @@
+
+Spring jdbc
+
+DB연동
+GRANT RESOURCE. CONNECT TO sqringdb;  - 사용자 생성
+GRANT RESOURCE, CONNECT TO springdb;  - 권한 부여
+
+
+JdbcTemplate
+
+  - int update(...) : INSERT, UPDATE, DELETE
+  - list<T> query(...) : SELECT
+  - T queryForObject(...) : SELECT, RowMapper
+                                       -집계함수
+                                            (COUNT, MAX, MIN, SUM ...) : 기본형 Wrapper 클래스 지정
+
+slf4j-api - 로거 api
+logback-classic
+
+
+로고
+FATAL
+ERROR
+WARN
+INFO
+DEBUG
+TRACE
+
+jvav.sql.ResultSet
+- 레코드 조회 결과
+
+  날짜와 시간 - java.sql.Timestamp
+  날짜 - java.sql.Date
+  시간 - java.sql.Time
+
+
+
+JDBC API -> Spring JDBC
+            -> PrepardeStatement
+
+java.sql.Connection
+java.sql.PreparedStatement  
+
+
+오라클
+  세션 : 연결된 단위
+  트랜잭션 : 하나의 최단위  -> 쿼리가 	commit, rollback 하기전이 하나의 트랜잭션이다.
+    - 즉 DB 영구 반영 시점까지
+
+트랜잭션 수동 관리
+----------------------
+Connection            |
+   autoCommit(false) | - 전 //공통기능
+                          |
+쿼리 실행1             | ㄱ
+쿼리 실행2             |   - 핵심 기능
+쿼리 실행3             | 」
+                          |
+commit                 | - 후  //공통기능
+-----------------------
+@Transactional - 클래스명, 메서드명  --> 이게 적용되면 프록시처럼 적용된다.
+
+
