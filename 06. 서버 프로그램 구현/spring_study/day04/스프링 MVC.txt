@@ -7,7 +7,7 @@ C(Controller)
 
 
 1. 스프링 MVC 설정
-spring webmvc 프레임워크 : 도움을 주는 설계 틀
+spring webmvc - 웹 프레임워크 : 도움을 주는 설계 틀
   - spring-context + spring webmvc
 
 + 자바 웹 기술
@@ -17,14 +17,87 @@ spring webmvc 프레임워크 : 도움을 주는 설계 틀
 
 2. web.xml
 
-WebMvcConfigurer 인터페이스
+WebMvcConfigurer 인터페이스 (암기 ★★★)
+- 웹 mvc 설정 항목
 
 
 코드 구현
 1. 컨트롤러 구현
+@Controller : 요청처리, 컨트롤러 빈
+즉 동일한 관리객체지만 플러스로 요청처리도 가능하다.
+
 2. JSP 구현
 3. 실행하기
 
 
 
 스프링 MVC 프레임워크 동작 방식
+
+시작 시 -> DispatcherServlet
+	    - HttpServletinit(ServletConfig config)
+	    - 스프링 컨테이너 생성 + 설정 클래스와 함께
+	    - AnnotationConfigWebApplicationContext
+		웹 기능 전용 관리 객체 - @EnableWebMvc : 자동셋팅
+		핵심적인 관리객체
+		- HandlerMapping
+		    참고) Mapping : 검색
+
+		- HandlerAdapter
+		- ViewResolver
+
+
+ModelAndView
+  -> Model : 데이터
+  -> View : 출력 템플릿 경로
+
+속성을 관리하는 객체
+PageContext pageContext
+HttpServletRequest request
+HttpSession session
+ServletContext application
+  - setAttribute, getAttribute, removeAttribute
+
+Model
+  - addAttribute
+  - addAllAttribute
+
+
+스프링 편의 기능
+서블릿, 기본 요청객체, 요청 메서드에 정의하면 바로 주입이 된다.
+(HttpServvletRequest, HttpServlerResponse, HttpSession -> 스프링 관리 객체, 의존성 주입)
+(Model, Errors ...)
+
+
+@RequestParam : 요청 key값과 변수가 일치하지 않는 경우 발생한다.
+
+
+
+DispatcherServlet과 스프링 컨테이너
+1. DispatcherServlet
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
