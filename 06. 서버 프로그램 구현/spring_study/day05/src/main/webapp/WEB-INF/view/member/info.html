@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
     <body>
+    <header th:replace="~{outlines/header::common}"></header>
+
+    <!--th:replace 교체된다. - 헤더가 교체된다. -->
+    <th:block th:object="${member}">
+        <!--①번째 방법 - 선택 변수 : 세션에 object를 하나 지정하고 *을 사용하여 결과를 출력한다.-->
+        <!--②번째 방법 - th:block : 태그를 제거하지 않고 블록만 추가-->
+        [[*{@cLib.toConvert(userId)}]]<br>
+        [[${@cLib.toConvert(member.userId)}]]  <!-- 잘 쓰이지는 않지만 필요에 따라 쓰일수 있다. -->
         <dl>
-            <dt>아이디</dt>
-            <dd th:text="${member.userId}"></dd>
+            <dt th:text="#{userId}"></dt>
+            <dd th:text="*{userId}"></dd>
         </dl>
         <dl>
-            <dt>회원명</dt>
-            <dd th:text="${member.userNm}"></dd>
+            <dt th:text="#{userNm}"></dt>
+            <dd th:text="*{userNm}"></dd>
         </dl>
         <dl>
-            <dt>휴대전화</dt>
-            <dd th:text="${member.mobile}"></dd>
+            <dt th:text="#{mobile}"></dt>
+            <dd th:text="*{mobile}"></dd>
         </dl>
         <dl>
-            <dt>가입일</dt>
-            <dd th:text="${member.regDt}"></dd>
+            <dt th:text="#{member.intro}"></dt>
+            <dd th:utext="*{intro}"></dd>
         </dl>
+        <dl>
+            <dt th:text="#{member.regDt}"></dt>
+            <dd th:text="*{#temporals.format(regDt, 'yyyy.MM.dd')}"></dd>
+        </dl>
+    </th:block>
+
+    <footer th:replace="~{outlines/footer::common}"></footer>
     </body>
 </html>

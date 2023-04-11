@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class JoinController {
     @GetMapping  //현재 get방식에서...
     public String join(Model model){
-        model.addAttribute("title", "회원가입");
-        model.addAttribute("content", "회원가입 내용");
+        // model.addAttribute("title", "회원가입");
+        //model.addAttribute("content", "회원가입 내용");
+
+        Join join = new Join();
+        model.addAttribute("join", join);
 
         return "member/join";
     }
@@ -26,7 +29,7 @@ public class JoinController {
         //model.addAttribute("join",join);
 
 
-        //return "member/join";
-        return "redirect:/member/join";  //리다이렉트
+        return "member/join";
+        //return "redirect:/member/join";  //리다이렉트
     }
 }

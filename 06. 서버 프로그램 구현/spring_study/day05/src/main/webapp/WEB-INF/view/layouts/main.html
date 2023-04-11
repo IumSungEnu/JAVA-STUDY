@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <title th:if="${pageTitle != null}" th:text="${pageTitle}">사이트 제목</title>
+        <!--null값일때 페이지 자체가 안나온다. 즉 노출하고 노출안하고의 차이(동적 처리) -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+        <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css" th:href="@{/css/{file}.css(file=${cssFile})}">
+              <!--${addCss}에서 cssFile로 꺼내오고 좌 -> 우로 이동 -->
+        <th:block layout:fragment="addCss"></th:block>
+
+        <script th:src="@{/js/common.js}"></script>
+        <script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
+        <th:block layout:fragment="addScript"></th:block>
+    </head>
+    <body>
+        <header th:replace="~{outlines/header::common}"></header>
+
+        <main layout:fragment="content"></main>
+
+        <footer th:replace="~{outlines/footer::common}"></footer>
+    </body>
+
+</html>
