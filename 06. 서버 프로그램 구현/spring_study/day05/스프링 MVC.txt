@@ -15,10 +15,65 @@ MessageSource
 
 인테페이스가 이미 정해져 있다.
 -Validator 인터페이스
+-Errors : 요청 메서드에 주입
+    rejectValue("필드명", 에러코드) : 특정 필드에 한정한 오류
+    rejectValue("필드명", 에러코드, 기본메세지)
 
-  Errors
-    .rejectValue(필드, 오류 코드 입력)
-    .reject(오류 코드) - 공통적인 부분
+    reject(에러코드) : 커멘드 객체 자체의 오류(공통)
+    reject(에러코드)
+
+    hasErrors() -> 한개라도 reject, rejectValue를 호출하면 true
+
+    #fields
+      .errors
+
+
+-ValidationUtils
+  .rejectIfEmpty    //null. isEmpty()
+  .rejectIfEmptyOrWhitespace    //null(isEmpty()) + 
+
+
+lombok
+@RequiredArgsConstructor
+  - 멤어 변수중에서 final이 있고 초기 값이 없는 경우
+  - @NonNull
+
+
+오류메세지 코드
+오류코드
+오류코드.필드명
+오류코드.커맨드객체.필드명
+오류코드.자료형의 클래스명(패키지명)
+
+
+필수항목 검증 ★★★
+  Bean Validation API -> java ee8 : 검증 API 
+  hibernate validator 6.0버전
+
+spring jdbc
+tomcat jdbc
+ojdbc8
+slf4j-api
+logback-classic
+
+
+
+
+암호화
+-양방향 암호화 : 암호화 - 복호화(원 데이터로 복구)
+		AES256, ARIA, OpenSSL ...
+
+		주소, 전화번호, 쿠키
+
+-단반향 암호화 : 해시(복호화 x)
+
+		비밀번호 - 비밀번호의 일치 여부 확인, 실제 비밀번호는 알 필요x
+		해시
+		  - 고정값 해시 : 같은 값에 대해서 같은 해시코드
+		    md5, sha1, sha256, sha512 ...
+		  - 유동 해시 : 해시를 만들때 마다 다른 해시코드
+		    BCryptyp
+		
 
 
 3. 세션

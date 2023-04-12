@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("controllers") //모든 controllers가 스캔범위(하위범위 포함)
+@ComponentScan({"controllers", "models"}) //모든 controllers가 스캔범위(하위범위 포함)
 public class ControllerConfig {
     @Bean
     public HelloController helloController(){
