@@ -1,14 +1,18 @@
 package config;
 
 import commons.CommonLibrary;
+import interceptors.MemberOnlyInterceptors;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -20,9 +24,14 @@ import java.util.Locale;
 @Import(DbConfig.class)
 @Configuration
 @EnableWebMvc  //스프링 MVC 설정을 활성화
-public class MvcConfig implements WebMvcConfigurer {
+public class MvcConfig implements WebMvcConfigurer { //개발 환경
     //WebMvcConfigurer 인터페이스는 스프링 MVC의 개별 설정을 조정할 떄 사용한다.
     //기본 추가되는 기능은 모두 WebMvcConfigurer에 들어간다.
+    
+    @Value("${environment}")
+    private String environment;
+    @Value("${file.upload.path}")  //fileUploadPath에 주입
+    private String fileUploadPath;
 
     @Autowired
     private ApplicationContext applicationContext;  //스프링 컨테이너
@@ -39,6 +48,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
+        //프로퍼티 추가
+        boolean isCacheable = environment.equals("real")?true:false;
+
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext); //스프링 컨테이너가 필요하기에 넣음
         templateResolver.setPrefix("/WEB-INF/view/");
@@ -98,6 +110,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addViewController("mypage")
                 .setViewName("mypage/index");
+        //mypage -> 회원 전용 서비스
     }
 
     //정적 경로 설정
@@ -105,5 +118,34 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")        // '/**' 파일을 포함한 모든경로
                 .addResourceLocations("classpath:/static/"); //resources -> static
+
+        //파일 업로드 경로 정적 경로 매칭
+        registry.addResourceHandler("/upload/**")
+                //.addResourceLocations("file:///D:/upload/");  // 슬러쉬3개(///)를 넣어야 컴퓨터가 인식하게 된다. / 하나를 제거한다.
+                .addResourceLocations("file:///" + fileUploadPath);
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) { //공통 기능을 가지고 통제
+        registry.addInterceptor(memberOnlyInterceptors())
+                .addPathPatterns("/mypage/**");
+        //설정을 직접 입력해야 하는 부분이 있으니 꼭 기억해 두자.
+    }
+
+    @Bean
+    public MemberOnlyInterceptors memberOnlyInterceptors(){
+        return new MemberOnlyInterceptors();
+        //관리객체로 지정한 후 설정은 addInterceptors()에 지정한다.
+    }
+    
+    //프로퍼티즈 설정
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer properties(){
+        PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
+        //여러 매개변수를 넣을수 있기 때문에 setLocations를 사용한다.
+        conf.setLocations(new ClassPathResource("application.properties"));
+
+
+        return conf;
     }
 }

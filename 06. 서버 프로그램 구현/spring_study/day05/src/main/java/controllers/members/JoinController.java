@@ -42,7 +42,7 @@ public class JoinController {
                   //member를 빼도 출력이 가능하다. join도 마찬가지.
     //public String joinPs(String userId, String userPw){
     public String joinPs(@Valid Join join, Errors errors, Model model){  //커맨드 객체
-        //System.out.println(join);
+        System.out.println(join);
         //model.addAttribute("join",join);
 
         validator.validate(join,errors);

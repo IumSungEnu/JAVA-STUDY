@@ -72,12 +72,179 @@ logback-classic
 		  - 고정값 해시 : 같은 값에 대해서 같은 해시코드
 		    md5, sha1, sha256, sha512 ...
 		  - 유동 해시 : 해시를 만들때 마다 다른 해시코드
-		    BCryptyp
+		    BCrypt
 		
 
 
+
+
+
 3. 세션
+참고)
+스프링 관리 객체
+HttpServlerResponse
+HttpServletRequest
+HttpSession
+
+-의존성 자동주입
+- 요청 메서드에 자동 주입
+
+
+
+session
+
+
+
+
+
+
+
+
 
 4. 인터셉터
+- HandlerInterceptor 인터페이스
+  - boolean preHandle(...)
+    - 컨트롤러 빈 요청 메서드를 실행하기 전
+    - true : 컨트롤러 처리
+    - false : 중단
+    - 접근 권한 통제에서 주로 사용
+
+
+  - void postHandle(...)
+    - 컨트롤러 빈 요청 메서드 처리 후 ModelAndView 반환 한 직후 실행
+
+  - void afterCompletion(...)
+    - 응답 완료 후 실행된다.
+
+
+
+- WebMvcConfigurer
+  - addInterceptors : 설정
  
 5. 쿠키
+
+@CookieValue
+기본동작 : 변수명과 동일한 쿠키명이 있으면 자동 주입
+
+
+
+
+6. 날짜 값 변환
+- java.time 패키지
+    LocalDate, LocalDateTime
+
+  요청데이터가 String : LocalDate, LocalTime, LocalDateTime으로 자동 변환 x
+  @DateTimeFormat
+    - pattern : 
+
+    - 형식이 일치하지 않을때 typeMismatch
+
+
+
+7. @PathVariable : 경로 변수
+/member/회원아이디
+
+
+8. 예외처리
+@ExceptionHandler(발생할 예외 클래스 클래스(Class))
+
+- 예외처리 메서드 자동 주입
+  - 발생항 예외 객체
+  - HttpServletRequest
+  - HttpServlerResponse
+  - HttpSession
+  - Model model
+
+@ControllerAdvice : 컨트롤러 공통
+
+@RestControllerAdvice
+
+
+
+
+
+
+
+
+7. 파일 업로드
+설정
+MultipartFile 인터페이스
+
+1024바이트 -1kb
+1024kb -> 1mb
+
+
+기본 POST 양식 데이터 형식(Content-Type)
+content-type : application/x-www-form-urlencoded
+userId=user01&userPw=123456
+
+
+바이너리 데이터
+
+0000123123123123123
+
+
+
+파일 전송 : multipart : 여러 파트 : 양식데이터와 파일데이터의 양식이 일치하지 않으므로 파트를 나눠서 전송하기 위함
+
+요청 바디
+------------------양식 데이터 파드 ---------------------
+userId=user01&userPw=123456
+
+-------------------파일 데이터 파드 ---------------------
+파일 데이터
+
+
+<form method="post" ... enctype="multipart/form-data">
+
+
+파일 업로드 디렉토리를 정적 경로로 연결해야 한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8. 프로필
+- 프로필 변수에 따라 생성하는 스프링 빈을 선택
+@Profile("환경변수")
+
+spring.profiles.active=환경변수
+
+
+예)
+실행시 - Dspring.profiles.active=prod
+@Profile("prod")
+
+
+
+9. 프로퍼티
+properties 파일의 값
+
+
+static, @Bean
+ProperySourcesPlaceholderConfigurer
+
+
+@Value("${키}")
+
+
+java -jar  배포파일.jar -Dspring.profiles.active=prod
+
+application.properties
+application.prod.properties
+
+
+프로필 + 프로퍼티 : 주로 설정시에 사용
+
+
+
+
