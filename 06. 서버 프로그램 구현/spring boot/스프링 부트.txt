@@ -1,0 +1,42 @@
+스프링 부트
+1. MVC
+m - model
+v - view
+c - controller
+
+2. 셋팅
+- 톰캣 10 내장
+- jakarta ee 9
+- javax -> jakarta
+
+
+live reload
+ctrl + shift + a
+compiler.automake.allow.when.app.running 활성화
+
+chome 확장 팩 - liveReload
+
+
+
+H2 Database - 자바 기반 관계형 데이터베이스
+	     - 메모리 기반
+	     - 테스트용 DB
+
+
+
+
+메세지
+
+
+
+
+3. 스프링 부트 스케줄
+-@EnableScheduling
+-@Scheduled
+    cron :  초, 분, 시, 일, 월, 요일 - 주기적 실행
+    fixedDelay : 실행 이후 일정 시간 지연 후 다시 실행
+    fixedRate : 실행 시점 이후 지연후 다시 실행
+    fixedDelayString
+    fixedRateString
+    initialDelay ; 실행 전 지연 후 실행
+    initialDelayString 
