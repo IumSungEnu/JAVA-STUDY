@@ -1,5 +1,6 @@
-package org.koreait.controllers.boards;
+package org.koreait.models.board;
 
+import org.koreait.controllers.boards.BoardForm;
 import org.koreait.models.board.Board;
 import org.koreait.models.board.BoardDAO;
 import org.springframework.beans.factory.annotation.Autowired;
