@@ -62,13 +62,66 @@ JPQL - Java Persistence Query Language
 
 
 
+
+
 4. 쿼리 메서드
+
+Pageable 인터페이스 
+  - 페이징
+
+spring data doc api
+
+PageRequest.of(int page, int size)
+	- page : 페이지 번호(0부터 시작)
+	- size : 추출 갯수
+
+
+**JPQL 보기**(과제)
+
+
+
 
 5. @Query 애노테이션
 
 6. Querydsl
 
+querydsl-jpa
+querydsl-apt : 쿼리빌즈가 설치된 클래스가 자동생성
+
+plugin - 백그라운드 프로그램
+apt-maven-plugin : 감지할수 있게....
+
+javax
+jakarta
+
+
+BooleanBuilder - Predicate의 구현체
+- WHERE 조건
+
+Q엔티티 
+
+
+반드시 기억해주세요★★★
+쿼리 DSL, Reponsitory 인터페이스 상속에 QuerydslPredicateExecutor가 추가
+
+It -> Iesser than <
+le -> lessen than equal <=
+gt -> greater than >
+goe -> greater than equal >= 
+like
+desc
+asc
+
+
+
+
+
+
+
 7. 연관관계 매핑
+@ManyToOne : 다대일 매핑
+@OneToMany : 일대 다 매핑
+@OneToOne : 일대일 매핑
 
 8. 영속성 전이
 

@@ -22,7 +22,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long userNo;
 
-    @Column(length = 45, unique = true, nullable = false) //nullable = false -> not null
+    @Column(length = 45, unique = true, nullable = false) //nullable = false -> not null 제약조건
     private String userId;
 
     @Column(length = 65, nullable = false)
