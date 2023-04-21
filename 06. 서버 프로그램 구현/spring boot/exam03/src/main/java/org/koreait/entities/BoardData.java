@@ -1,12 +1,11 @@
 package org.koreait.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
-import java.time.LocalDateTime;
+import lombok.*;
 
 @Data
-@Entity
+@Entity @Builder
+@NoArgsConstructor @AllArgsConstructor
 public class BoardData extends BaseEntity{
 
     @Id @GeneratedValue  //@GeneratedValue - 증감번호
@@ -20,7 +19,10 @@ public class BoardData extends BaseEntity{
     private String content; //내용
 
 
-    @ManyToOne
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY) //FetchType.EAGER : 즉시 로딩(처음부터 join 생성) - 문제점: 로딩지연(성능저하)
+                                        //FetchType.LAZY : 지연 로딩(기본적으로 사용)
+    //many쪽이 주인이다 - 외래키를 가지고 있기 때문에.(외래키를 바꾸면 관례가 바뀌기 때문에)
     @JoinColumn(name="userNo")
     private Member member;  //id_userNo
 
