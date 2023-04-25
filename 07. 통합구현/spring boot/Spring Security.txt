@@ -27,6 +27,12 @@ UserDetailsService 인터페이스
   - 세션 -> String username : 아이디
   - 회원정보를 DB에 조회 -> UserDetails 구현 클래스에 값을 넣어주는 역할
 
+1. 회원정보 조회
+
+2. tymeleaf spring security
+
+
+
 인터페이스 명세서
 
 REST  방식으로 회원가입 로그인 구현하기

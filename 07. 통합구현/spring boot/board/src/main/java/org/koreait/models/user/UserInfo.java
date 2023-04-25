@@ -26,31 +26,37 @@ public class UserInfo implements UserDetails {//시큐리티가 제공하는 회
 
     @Override
     public String getPassword() {
+
         return userPw;
     }
 
     @Override
     public String getUsername() {
+
         return userId;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;  //true로 바꿔준다.(이후 기능을 구현하면 바꿔준다.)
+
+         return true;  //true로 바꿔준다.(이후 기능을 구현하면 바꿔준다.)
     }
 
     @Override
     public boolean isAccountNonLocked() { //잠근다
+
         return true;  //true로 바꿔준다.(이후 기능을 구현하면 바꿔준다.)
     }
 
     @Override
     public boolean isCredentialsNonExpired() {  //비밀번호 갱신
+
         return true;  //true로 바꿔준다.(이후 기능을 구현하면 바꿔준다.)
     }
 
     @Override
     public boolean isEnabled() { //비활성화(탈퇴)
+
         return true;  //true로 바꿔준다.(이후 기능을 구현하면 바꿔준다.)
     } 
 }
