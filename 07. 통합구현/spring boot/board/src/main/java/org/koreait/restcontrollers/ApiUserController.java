@@ -70,5 +70,15 @@ public class ApiUserController {
         return ResponseEntity.ok().build();  //성공시는 응답 코드 200, body 데이터 x
     }
 
-
+//    @DeleteMapping
+//    public ResponseEntity<JSONResult<String>> delete(@RequestBody BoardForm boardForm){
+//
+//        //삭제처리
+//        JSONResult<String> jsonResult = JSONResult.builder()
+//                .success(true)
+//                .errorMessage("삭제성공")
+//                .build();
+//
+//        return ResponseEntity.ok(jsonResult);
+//    }
 }

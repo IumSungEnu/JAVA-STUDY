@@ -9,7 +9,7 @@ import java.util.Collection;
 
 @Data
 @Builder
-public class UserInfo implements UserDetails {//시큐리티가 제공하는 회원정보 기본 틀
+public class UserInfo implements UserDetails {//시큐리티가 제공하는 회원정보 기본 틀(재정의 - 별도의 인터페이스 정의)
     
     private Long userNo;
     private String userId;
@@ -25,13 +25,13 @@ public class UserInfo implements UserDetails {//시큐리티가 제공하는 회
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword() {  //반드시 알려주어야 한다. - 비밀번호
 
         return userPw;
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() {  //반드시 알려주어야 한다. - 아이디
 
         return userId;
     }

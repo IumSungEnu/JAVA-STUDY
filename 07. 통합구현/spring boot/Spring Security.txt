@@ -27,9 +27,37 @@ UserDetailsService 인터페이스
   - 세션 -> String username : 아이디
   - 회원정보를 DB에 조회 -> UserDetails 구현 클래스에 값을 넣어주는 역할
 
-1. 회원정보 조회
+
+
+1. 로그인한 회원정보 조회
+  1) 컨트롤러 주입
+    - principal principal
+         - @AuthenticationPrincipal UserDtails 구현체
+  2) Spring Bean
+    - SecuityContextHolder
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserInfo userInfo = (UserInfo) principal;
+
+
+타임리프 확장 모듈(spring security)
+thymeleaf-extras-springsecurity6     --> 이미 다운로드 받아있다.
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
+  sec:authorize
+	- isAnonymous() : 미로그인
+	- isAuthenticated() : 로그인 상태
+	- hasAuthority("권한명")
+	- hasAnyAuthority("권한명")
+
+Spring Data JPA Auditing + Spring Security : 수정자
+
+AuditorAware 인터페이스 구현, 스프링 빈
+
+
 
 2. tymeleaf spring security
+
+
 
 
 
@@ -38,6 +66,14 @@ UserDetailsService 인터페이스
 REST  방식으로 회원가입 로그인 구현하기
 
 java 배포파일.jar - Dspring.profiles.active=prod
+
+
+
+--------------------------------------------
+
+
+3.
+
 
 
 

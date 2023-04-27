@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
@@ -20,7 +21,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-//@TestPropertySource(locations = "application-test.properties")
+//@TestPropertySource(locations = "classpath:application-test.properties")
 public class ApiUserTest {
     
     @Autowired
@@ -49,10 +50,10 @@ public class ApiUserTest {
                 ,joinForm.getUserPw()
                 ,joinForm.getUserPwRe()
                 ,joinForm.getUserNm());
-
-
+        //.String joinFormat = String.format("{ \"userId\":\"%s\", "userPw":"%s"}");
+        //String body = String.format(joinFormat)''
         mockMvc.perform(post("/api/user/account")
-                        .content(params)
+                        .content(params) //body로 쓴다.
                         .contentType("application/json"))
                 .andExpect(status().isOk());
     }
@@ -62,4 +63,17 @@ public class ApiUserTest {
     void joinDataValidation() {
 
     }
+    
+//    @Test
+//    @DisplayName("삭제테스트 - 성공시 200코드")
+//     void deleteTest() throws Exception{
+//
+//        saveService.save(boardForm);
+//
+//        mockMvc.perform(delete("/api/board/") + boardForm.getId())
+//                .andExpect(status().isOk())
+//                .andReturn().getResponse().getContentAsString();
+//
+//        assertTrue(body.contains("삭제성공"));
+//    }
 }

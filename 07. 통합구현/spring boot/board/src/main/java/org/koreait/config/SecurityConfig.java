@@ -1,25 +1,16 @@
 package org.koreait.config;
 
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.koreait.models.user.LoginFailureHandler;
 import org.koreait.models.user.LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import java.io.IOException;
 
 @Configuration
 public class SecurityConfig { //시큐리티 보안
@@ -39,12 +30,12 @@ public class SecurityConfig { //시큐리티 보안
                 //로그아웃 페이지
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //패턴을 입력하면 된다.
                 .logoutSuccessUrl("/user/login");  //로그아웃 성공시 이동할 url
 
         //특정 url을 관리(특정 페이지)
         http.authorizeHttpRequests()
-                .requestMatchers("/mypage/**").authenticated() //로그인한 회원만 가능한 url 패턴
+                .requestMatchers("/templates/mypage/**").authenticated() //로그인한 회원만 가능한 url 패턴
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")  //관리자만 접근 가능한 url 패턴
                 .anyRequest().permitAll();
         
