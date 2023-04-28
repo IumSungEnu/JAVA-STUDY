@@ -45,7 +45,6 @@ public class JPAExam01Test {
         Member member2 = em.find(Member.class, member.getUserNo());
         System.out.println(member2);
 
-
         //삭제
         //em.remove(member);
         //em.flush();  //delete 쿼리
