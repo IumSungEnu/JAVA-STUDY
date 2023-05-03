@@ -1,0 +1,23 @@
+
+Spring Data JAP
+0. JPQL(Java Persistence Query Language)
+- 엔티티 기능을 처리할수 있고 영속성 상태 
+
+
+@Query 애노테이션
+  - N+1 문제를 해결하기 위해 fetch 조인을 한다.
+  
+
+
+
+1. Querydsl
+
+
+
+
+스프링 복습
+1. 스프링 DI
+2. 의존 자동 주입
+3. 컴포넌트 스캔
+4. 빈 라이프사이클
+5. AOP 프로그래밍

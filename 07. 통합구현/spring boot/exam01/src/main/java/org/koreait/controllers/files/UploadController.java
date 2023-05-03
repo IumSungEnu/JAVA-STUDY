@@ -14,8 +14,10 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/file/upload")
 public class UploadController {
+
     @Value("${file.upload.path}")
     private String fileUploadPath;
+
     @GetMapping
     public String upload() {
         return "file/upload";

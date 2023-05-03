@@ -1,15 +1,22 @@
 package org.koreait.restcontrollers;
 
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
 import org.koreait.entities.BoardData;
 import org.koreait.entities.Member;
+import org.koreait.entities.QBoardData;
+import org.koreait.entities.Users;
+import org.koreait.repositories.BoardDataRepository;
 import org.koreait.repositories.MemberRepository;
+import org.koreait.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.query.JpaQueryMethodFactory;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.backoff.BackOff;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +34,11 @@ public class JPAExamController {
     
     private final MemberRepository repository;
 
+    private final BoardDataRepository boardDataRepository;
+
     @Autowired
     private EntityManager em;
+
 
     @GetMapping("/ex01")
     public void ex01(){
@@ -123,6 +133,76 @@ public class JPAExamController {
         members.forEach(System.out::println);
     }
 
+    @GetMapping("/ex08")
+    public void ex08() {
+        Member member = repository.findById(1L).orElse(null);
+
+        List<BoardData> items = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            BoardData boardData = new BoardData();
+            boardData.setSubject("제목" + i);
+            boardData.setContent("내용" + i);
+            boardData.setMember(member);
+
+            items.add(boardData);
+        }
+
+        boardDataRepository.saveAllAndFlush(items);
+    }
+
+    @GetMapping("/ex09")
+    public void ex09() {
+        //BoardData boardData = boardDataRepository.findById(1L).orElse(null);
+        //Member member = boardData.getMember();
+        //member.getUserId();
+        List<BoardData> items = boardDataRepository.findAll();
+        for (BoardData item : items) {
+            Member member = item.getMember();
+            System.out.printf("userId=%s%n", member.getUserId());
+        }
+
+    }
+
+    private final UsersRepository uRepository;
+
+    @GetMapping("/ex10")
+    public void ex10() {
+        Users user = Users.builder()
+                .userId("user01")
+                .userNm("사용자")
+                .build();
+        user = uRepository.saveAndFlush(user);
+
+        user.setUserNm("(수정)사용자");
+        uRepository.flush();
+    }
+
+
+    @GetMapping("/ex11")
+    public void ex11(){
+        //@Query 애노테이션 예제
+        List<BoardData> datas = boardDataRepository.getBoardData("제목");
+    }
+
+    //  ↓
+
+    @GetMapping("/ex12")
+    public void ex12(){ //의존성이 있어야 한다.
+
+        QBoardData boardData = QBoardData.boardData;
+        JPAQueryFactory jpaQueryFactory = new JPAQueryFactory(em);
+        JPAQuery<BoardData> jpaQuery = jpaQueryFactory.selectFrom(boardData) //엔티티를 선택한다.
+                .leftJoin(boardData.member)
+                .fetchJoin();  //fetchJoin 중요하다★★★
+
+        List<BoardData> datas = jpaQuery.fetch();
+    }
+
+    @GetMapping("/ex13")
+    public void ex13(){
+        List<BoardData> datas = boardDataRepository.getBoardData2("제목");
+    }
 }
 
 

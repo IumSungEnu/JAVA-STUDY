@@ -1,0 +1,137 @@
+자바스크립트
+
+1. XMLHttpRequest
+- 페이지의 새로고침 없이 데이터 치환 기술
+- axios
+   - 프론트 js, 서버쪽 js(node.js) -> 동일한 방식으로 구현
+
+
+- open(요청방식 (GET, POST), 요청 URL);
+- send(body) - 요청 전송 + 바디  데이터
+
+    body - GET 방식일때 null
+	  POST 방식일때
+		content- type : application/x-www-form-urlencoded
+		  - 키=값&키=값
+		content-type : applicaion/json
+		  - {"키":"값", "키":"값"}
+
+- setRequestHeader("키", "값") : 요청 헤더 설정
+
+
+window.addEventListener("COMContentLoaded", function(){ //DOM 트리 구축 완료 후
+	const buttonEl = document.getElementById("button");
+	const ajaxEataEl = document.getElementBYID("ajax_data");
+
+	buttonEl.addEventListener("click", function() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET", "/ajax");
+
+		xhr.send(null);
+
+	xhr.responseType="json
+	xhr.onreadystatechange = function(){
+		if(xhr.status == 200 && xhr.readyState == XMLHttpRequest.DONE){ //응답 성공시 처리
+			//console.log(xhr.responseText);
+			//ajaxDataEl.innerHTML = xhr.responseText;
+			//const res = JSON.parse(xhr.responseText);
+			//console.log(res);
+			console.log(xhr.response);
+		}
+	};
+	
+	xhr.onerror = function(err){
+		console.error(err);
+	}
+
+	xhr.onerror = function(err){
+		console.error(err);
+	}
+
+	});
+
+});
+
+
+2. FormData
+
+3. Promise
+- 비동기 순차 실행
+
+참고) 자바스크립트
+- 비동기 - Event
+
+nodejs    
+
+
+function work(time, workNm){
+    setTimeout(function(){
+        console.log(workNm);
+    }, time);
+}
+undefined
+work(10000, "A작업");
+work(3000, "B작업");
+work(5000, "C작업");
+undefined
+VM265:3 B작업
+VM265:3 C작업
+VM265:3 A작업
+
+-------------------------------------------
+
+work(10000, "A작업", function(){
+    work(3000, "B작업", function(){
+        work(5000, "C작업", function(){
+
+        });
+    });
+});
+undefined
+VM265:3 A작업
+function work(time, workNm){
+    return new Promise((resolve, reject) => {
+        
+        if(!time || !workNm){
+            reject(new Error("필수항목 누락"));
+        }
+        setTimeout(function(){
+            resolve(workNm);
+        }, time);
+    })
+}
+undefined
+work(3000, "A작업");
+Promise {<pending>}
+work(3000, "A작업")
+.then((data) => { //resolve를 호출했을때 유입되는 부분
+    console.log(data);
+})
+.catch((err) => { //reject를 호출했을때 유입되는 부분
+    console.log(err)
+})
+Promise {<pending>}
+VM1971:3 A작업                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+
+
+- 구조를 더 개선 async ~ await
+
+(async function(){
+    try{
+        let data = await work(5000, "A작업");
+        console.log(data);
+
+        data = await work(3000, "B작업");
+        console.log(data);
+
+        data = await work(1000, "C작업");
+        console.log(data);
+    }catch(err){ //reject가 호출되었을때 유입되는 구간
+        console.error(err);
+    }
+})();
+
+
+
+4.Ajax 파일 업로드 구현하기
+(+JPA)
